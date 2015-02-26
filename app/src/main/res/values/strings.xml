@@ -22,7 +22,6 @@
     <string name="green">#b7fec5</string>
     <string name="red">#ff7373</string>
     <string name="white">#ffffff</string>
-
     <string-array name="colors">
         <item>Default</item>
         <item>Black</item>
