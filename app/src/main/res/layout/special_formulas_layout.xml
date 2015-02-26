@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="Area:"
+        android:id="@+id/areaTitle"
+        android:paddingTop="60dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/lengthIn"
+        android:layout_alignBottom="@+id/areaTitle"
+        android:layout_toRightOf="@+id/areaTitle"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Length"
+        android:id="@+id/lengthTitle"
+        android:paddingTop="10dp"
+        android:gravity="center_horizontal"
+        android:layout_alignLeft="@+id/lengthIn"
+        android:layout_alignRight="@+id/lengthIn"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="X"
+        android:id="@+id/areaSign"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center_horizontal"
+        android:layout_toRightOf="@+id/lengthIn"
+        android:layout_alignTop="@+id/lengthIn"/>
+
+    <EditText
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/widthIn"
+        android:layout_alignBottom="@+id/areaTitle"
+        android:layout_toRightOf="@+id/areaSign"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Width"
+        android:id="@+id/widthTitle"
+        android:paddingTop="10dp"
+        android:gravity="center_horizontal"
+        android:layout_alignLeft="@+id/widthIn"
+        android:layout_alignRight="@+id/widthIn"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="="
+        android:id="@+id/areaSign2"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center_horizontal"
+        android:layout_toRightOf="@+id/widthIn"
+        android:layout_alignTop="@+id/widthIn"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="30sp"
+        android:text="XXXX"
+        android:id="@+id/areaTotal"
+        android:paddingTop="10dp"
+        android:maxLength="8"
+        android:gravity="center_horizontal"
+        android:layout_toRightOf="@+id/areaSign2"
+        android:layout_alignBottom="@+id/widthIn"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Convert"
+        android:id="@+id/sfConvert"
+        android:layout_below="@+id/areaTitle"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="Area of Circle:"
+        android:id="@+id/aocTitle"
+        android:paddingTop="30dp"
+        android:paddingRight="10dp"
+        android:paddingLeft="5dp"
+        android:gravity="right"
+        android:layout_below="@+id/sfConvert" />
+
+    <EditText
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/radiusIn"
+        android:layout_alignBottom="@+id/aocTitle"
+        android:layout_toRightOf="@+id/aocTitle"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Radius"
+        android:id="@+id/radiusTitle"
+        android:paddingTop="10dp"
+        android:gravity="center_horizontal"
+        android:layout_alignTop="@+id/aocTitle"
+        android:layout_alignLeft="@+id/radiusIn"
+        android:layout_alignRight="@+id/radiusIn"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="≈"
+        android:textSize="30dp"
+        android:id="@+id/aocSign"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center_horizontal"
+        android:layout_toRightOf="@+id/radiusIn"
+        android:layout_alignTop="@+id/radiusIn"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="30sp"
+        android:text="XXXX"
+        android:id="@+id/aocTotal"
+        android:paddingTop="10dp"
+        android:maxLength="8"
+        android:gravity="center_horizontal"
+        android:layout_toRightOf="@+id/aocSign"
+        android:layout_alignBottom="@+id/radiusIn"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Convert"
+        android:id="@+id/sfConvert2"
+        android:layout_below="@+id/aocTitle"
+        android:layout_centerHorizontal="true"/>
+
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="Circumference of Circle:"
+        android:id="@+id/circTitle"
+        android:paddingTop="30dp"
+        android:paddingRight="10dp"
+        android:layout_below="@+id/sfConvert2"
+        android:gravity="right"/>
+
+    <EditText
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/radiusIn2"
+        android:layout_alignBottom="@+id/circTitle"
+        android:layout_toRightOf="@+id/circTitle"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Radius"
+        android:id="@+id/radiusTitle2"
+        android:paddingTop="10dp"
+        android:gravity="center_horizontal"
+        android:layout_alignTop="@+id/circTitle"
+        android:layout_alignLeft="@+id/radiusIn2"
+        android:layout_alignRight="@+id/radiusIn2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="≈"
+        android:textSize="30dp"
+        android:id="@+id/circSign"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center_horizontal"
+        android:layout_toRightOf="@+id/radiusIn2"
+        android:layout_alignTop="@+id/radiusIn2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textSize="30sp"
+        android:text="XXXX"
+        android:id="@+id/circTotal"
+        android:paddingTop="10dp"
+        android:maxLength="8"
+        android:gravity="center_horizontal"
+        android:layout_toRightOf="@+id/circSign"
+        android:layout_alignBottom="@+id/radiusIn2"/>
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Convert"
+        android:id="@+id/sfConvert3"
+        android:layout_below="@+id/circTitle"
+        android:layout_centerHorizontal="true"/>
+
+</RelativeLayout>

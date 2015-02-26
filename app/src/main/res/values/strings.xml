@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Unit Converter</string>
+    <string name="title_section1">Conversion</string>
+    <string name="title_section2">Special Formulas</string>
+    <string name="title_section3">Cheat Sheet</string>
+    <string name="title_section4">Options</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_example">Example action</string>
+    <string name="action_settings">Settings</string>
+    <string name="button1">Default</string>
+    <string name="button2">Peach</string>
+    <string name="button3">Blue</string>
+    <string name="button4">Green</string>
+    <string name="button5">Red</string>
+    <string name="button6">White</string>
+    <string name="def">#eeeeee</string>
+    <string name="peach">#ff9955</string>
+    <string name="blue">#a3cfff</string>
+    <string name="green">#b7fec5</string>
+    <string name="red">#ff7373</string>
+    <string name="white">#ffffff</string>
+
+    <string-array name="colors">
+        <item>Default</item>
+        <item>Black</item>
+        <item>Blue</item>
+        <item>Green</item>
+        <item>Red</item>
+        <item>White</item>
+    </string-array>
+    <string-array name="units">
+        <item>Area</item>
+        <item>Binary/Hexadecimal</item>
+        <item>Distance</item>
+        <item>Information</item>
+        <item>Speed</item>
+        <item>Temperature</item>
+        <item>Time</item>
+        <item>Weight</item>
+        <item>Volume</item>
+    </string-array>
+    <string name="cheat_sheet">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper accumsan finibus. Etiam vulputate gravida vestibulum. Phasellus eget sollicitudin ante. Maecenas enim nibh, ultricies ut tellus sed, commodo ultrices dolor. Donec auctor dui in hendrerit cursus. Quisque congue euismod sapien, non ullamcorper felis condimentum id. Proin blandit, massa a auctor commodo, odio nulla lobortis enim, eget accumsan ligula augue quis tellus. Donec finibus ante at hendrerit ornare. Vivamus eu libero non massa faucibus tempor a quis turpis. Duis eu tellus tincidunt, cursus ligula at, viverra lacus. Sed suscipit convallis ipsum, a sagittis lacus commodo at.\n\n
+In convallis sapien vitae massa scelerisque, facilisis laoreet tellus molestie. Nullam non nisi vel eros bibendum aliquam. Nam tellus augue, volutpat in vulputate aliquam, sollicitudin sed leo. Donec sit amet justo maximus, rhoncus magna vel, malesuada nibh. Maecenas auctor tempor ligula in sollicitudin. Proin vel felis facilisis, malesuada magna vitae, faucibus est. Ut pharetra, lacus dapibus maximus malesuada, lorem urna volutpat ante, eget ullamcorper nibh orci a orci. Quisque vitae tortor congue, tempus leo non, tempus turpis. Nulla nunc elit, eleifend facilisis sem vitae, pulvinar elementum ipsum. Phasellus ipsum tortor, ultricies in commodo malesuada, rutrum nec eros. Nunc non commodo sem. Fusce scelerisque, magna ut gravida mollis, eros urna vestibulum lectus, id sodales elit velit eget nibh. Sed eu egestas neque, eget congue sapien.\n\n
+Donec varius posuere rhoncus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. In sed eros sagittis, semper metus sit amet, elementum massa. Fusce interdum ultrices rutrum. Pellentesque vel venenatis augue. Fusce pulvinar metus at mauris maximus, vitae aliquam tortor tempor. Sed et facilisis nisl. Ut imperdiet, tellus eget commodo convallis, magna sapien laoreet purus, in euismod tortor turpis non magna. Pellentesque iaculis tempus tortor, eget aliquet risus porta quis. Cras pellentesque, eros id dignissim dapibus, ex lectus feugiat velit, et tincidunt felis felis ut sapien. Cras placerat eleifend metus, quis aliquam est rhoncus sit amet. Fusce egestas augue tincidunt est placerat mattis. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.\n\n
+Sed luctus efficitur nisl, at ornare ipsum convallis at. Sed ultrices nisi et est bibendum, non volutpat ligula feugiat. Ut quis commodo tellus. Mauris urna sapien, volutpat quis leo eget, lacinia efficitur ante. Cras blandit sit amet libero eu vestibulum. Sed lacinia tempor arcu commodo lobortis. Quisque eu mi ullamcorper, iaculis libero a, consectetur dui. Ut ornare finibus urna, eu semper sem pretium et. Suspendisse ut bibendum ipsum, at finibus enim. Vestibulum tellus lectus, euismod at faucibus ut, rhoncus eget ipsum.\n\n
+Nullam sit amet enim eu arcu iaculis feugiat in sed justo. Etiam et maximus lacus, et semper orci. Donec tristique dui et erat faucibus, eu commodo nisi blandit. Vivamus sagittis tristique scelerisque. Suspendisse iaculis iaculis ipsum. Duis maximus eros vel nulla laoreet finibus. Pellentesque nec blandit lorem.</string>
+</resources>

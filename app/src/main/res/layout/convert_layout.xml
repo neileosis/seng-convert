@@ -1,0 +1,363 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".Convert">
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:digits="abcdef0123456789.-"
+        android:ems="10"
+        android:layout_below="@+id/quickSet1"
+        android:id="@+id/inputText"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Convert"
+        android:id="@+id/buttonConvert"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_below="@+id/inputText"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.25"
+        android:id="@+id/quickSet1"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_toLeftOf="@+id/quickSet2"
+        android:layout_below="@+id/unitSpinner" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0.5"
+        android:id="@+id/quickSet2"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_toLeftOf="@+id/quickSet3"
+        android:layout_below="@+id/unitSpinner" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="1"
+        android:id="@+id/quickSet3"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/unitSpinner" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="5"
+        android:id="@+id/quickSet4"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_toRightOf="@id/quickSet3"
+        android:layout_below="@+id/unitSpinner" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10"
+        android:id="@+id/quickSet5"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_toRightOf="@id/quickSet4"
+        android:layout_below="@+id/unitSpinner" />
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/unitSpinner"
+        android:spinnerMode="dropdown"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:focusableInTouchMode="false"
+        android:layout_below="@+id/unitSpinner2"
+        android:layout_centerHorizontal="true"/>
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/unitSpinner2"
+        android:spinnerMode="dropdown"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:focusableInTouchMode="false"
+        android:entries="@array/units"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:singleLine="true"
+        android:text="Square Centimeters: "
+        android:id="@+id/firstName"
+        android:paddingTop="6dp"
+        android:layout_alignRight="@+id/dummy"
+        android:layout_below="@+id/buttonConvert" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:singleLine="true"
+        android:text="Square Inches: "
+        android:id="@+id/secondName"
+        android:layout_alignRight="@+id/dummy"
+        android:layout_below="@+id/firstName"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:singleLine="true"
+        android:text="Square Feet: "
+        android:id="@+id/thirdName"
+        android:layout_alignRight="@+id/dummy"
+        android:layout_below="@+id/secondName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Square Meters: "
+        android:singleLine="true"
+        android:id="@+id/fourthName"
+        android:layout_alignRight="@+id/dummy"
+        android:layout_below="@+id/thirdName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Acres: "
+        android:id="@+id/fifthName"
+        android:singleLine="true"
+        android:layout_alignRight="@+id/dummy"
+        android:layout_below="@+id/fourthName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Hectares: "
+        android:singleLine="true"
+        android:id="@+id/sixthName"
+        android:layout_alignRight="@+id/dummy"
+        android:layout_below="@+id/fifthName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Square Kilometers: "
+        android:singleLine="true"
+        android:id="@+id/seventhName"
+        android:layout_alignRight="@+id/dummy"
+        android:layout_below="@+id/sixthName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Square Miles: "
+        android:id="@+id/eighthName"
+        android:singleLine="true"
+        android:layout_alignRight="@+id/dummy"
+        android:layout_below="@+id/seventhName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:singleLine="true"
+        android:id="@+id/ninthName"
+        android:layout_alignRight="@+id/dummy"
+        android:layout_below="@+id/eighthName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:singleLine="true"
+        android:text=""
+        android:id="@+id/tenthName"
+        android:layout_alignRight="@+id/dummy"
+        android:layout_below="@+id/ninthName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:singleLine="true"
+        android:text=""
+        android:id="@+id/eleventhName"
+        android:layout_alignRight="@+id/dummy"
+        android:layout_below="@+id/tenthName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/twelfthName"
+        android:singleLine="true"
+        android:layout_alignRight="@+id/dummy"
+        android:layout_below="@+id/eleventhName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/firstValue"
+        android:layout_alignBottom="@+id/firstName"
+        android:layout_toRightOf="@+id/firstName"
+        android:layout_toEndOf="@+id/firstName"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/secondValue"
+        android:layout_alignBottom="@+id/secondName"
+        android:layout_toRightOf="@+id/secondName"
+        android:layout_toEndOf="@+id/secondName"
+        android:singleLine="true" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/thirdValue"
+        android:layout_alignBottom="@+id/thirdName"
+        android:layout_toRightOf="@+id/thirdName"
+        android:layout_toEndOf="@+id/thirdName"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/fourthValue"
+        android:singleLine="true"
+        android:layout_alignBottom="@+id/fourthName"
+        android:layout_toRightOf="@+id/fourthName"
+        android:layout_toEndOf="@+id/fourthName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/fifthValue"
+        android:layout_alignBottom="@+id/fifthName"
+        android:layout_toRightOf="@+id/fifthName"
+        android:layout_toEndOf="@+id/fifthName"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/sixthValue"
+        android:layout_alignBottom="@+id/sixthName"
+        android:layout_toRightOf="@+id/sixthName"
+        android:layout_toEndOf="@+id/sixthName"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/seventhValue"
+        android:layout_alignBottom="@+id/seventhName"
+        android:layout_toRightOf="@+id/seventhName"
+        android:layout_toEndOf="@+id/seventhName"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/eighthValue"
+        android:layout_alignBottom="@+id/eighthName"
+        android:layout_toRightOf="@+id/eighthName"
+        android:layout_toEndOf="@+id/eighthName"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/ninthValue"
+        android:layout_alignBottom="@+id/ninthName"
+        android:layout_toRightOf="@+id/ninthName"
+        android:layout_toEndOf="@+id/ninthName"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/tenthValue"
+        android:layout_alignBottom="@+id/tenthName"
+        android:layout_toRightOf="@+id/tenthName"
+        android:layout_toEndOf="@+id/tenthName"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/eleventhValue"
+        android:layout_alignBottom="@+id/eleventhName"
+        android:layout_toRightOf="@+id/eleventhName"
+        android:layout_toEndOf="@+id/eleventhName"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text=""
+        android:id="@+id/twelfthValue"
+        android:layout_alignBottom="@+id/twelfthName"
+        android:layout_toRightOf="@+id/twelfthName"
+        android:layout_toEndOf="@+id/twelfthName"
+        android:singleLine="true" />
+
+    <Space
+        android:id="@+id/dummy"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
+</RelativeLayout>
