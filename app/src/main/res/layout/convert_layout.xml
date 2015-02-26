@@ -8,11 +8,31 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:digits="abcdef0123456789.-"
+        android:digits="0123456789.-"
         android:ems="10"
         android:layout_below="@+id/quickSet1"
         android:id="@+id/inputText"
         android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:digits="abcdef0123456789"
+        android:ems="10"
+        android:layout_below="@+id/quickSet1"
+        android:id="@+id/inputTextHex"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:digits="01"
+        android:ems="10"
+        android:layout_below="@+id/quickSet1"
+        android:id="@+id/inputTextBin"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
 
     <Button
         android:layout_width="wrap_content"

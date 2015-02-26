@@ -32,12 +32,12 @@ public class Convert extends Fragment {
 
     public void onStart() {
         super.onStart();
-        final TextView input = (TextView) getView().findViewById(R.id.inputText);
-        Button quickSet1 = (Button) getView().findViewById(R.id.quickSet1);
-        Button quickSet2 = (Button) getView().findViewById(R.id.quickSet2);
-        Button quickSet3 = (Button) getView().findViewById(R.id.quickSet3);
-        Button quickSet4 = (Button) getView().findViewById(R.id.quickSet4);
-        Button quickSet5 = (Button) getView().findViewById(R.id.quickSet5);
+        final TextView input = (TextView) rootview.findViewById(R.id.inputText);
+        Button quickSet1 = (Button) rootview.findViewById(R.id.quickSet1);
+        Button quickSet2 = (Button) rootview.findViewById(R.id.quickSet2);
+        Button quickSet3 = (Button) rootview.findViewById(R.id.quickSet3);
+        Button quickSet4 = (Button) rootview.findViewById(R.id.quickSet4);
+        Button quickSet5 = (Button) rootview.findViewById(R.id.quickSet5);
         quickSet1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,7 +78,7 @@ public class Convert extends Fragment {
 
     public void chooseCategory() {
 
-        firstSpinner = (Spinner) getView().findViewById(R.id.unitSpinner2);
+        firstSpinner = (Spinner) rootview.findViewById(R.id.unitSpinner2);
         ArrayAdapter<CharSequence> firstAdapter = ArrayAdapter.createFromResource(getActivity(), R.array.units, android.R.layout.simple_spinner_item);
         firstAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         firstSpinner.setAdapter(firstAdapter);
@@ -86,7 +86,7 @@ public class Convert extends Fragment {
     }
 
     private void chooseArea() {
-        areaSpn = (Spinner) getView().findViewById(R.id.unitSpinner);
+        areaSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> areaList = new ArrayList<String>();
         areaList.add("Square Inches");
         areaList.add("Square Feet");
@@ -99,14 +99,14 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, areaList);
         areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         areaSpn.setAdapter(areaAdapter);
-        Button convertButton = (Button) getView().findViewById(R.id.buttonConvert);
-        final TextView firstValue = (TextView) getView().findViewById(R.id.firstValue);
-        final TextView secondValue = (TextView) getView().findViewById(R.id.secondValue);
-        final TextView thirdValue = (TextView) getView().findViewById(R.id.thirdValue);
-        final TextView fourthValue = (TextView) getView().findViewById(R.id.fourthValue);
-        final TextView fifthValue = (TextView) getView().findViewById(R.id.fifthValue);
-        final TextView sixthValue = (TextView) getView().findViewById(R.id.sixthValue);
-        final TextView seventhValue = (TextView) getView().findViewById(R.id.seventhValue);
+        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
+        final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
+        final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
+        final TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);
+        final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
+        final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,7 +188,7 @@ public class Convert extends Fragment {
     }
 
     private void chooseBin() {
-        binSpn = (Spinner) getView().findViewById(R.id.unitSpinner);
+        binSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> binList = new ArrayList<String>();
         binList.add("Binary");
         binList.add("Decimal");
@@ -197,35 +197,43 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, binList);
         binAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binSpn.setAdapter(binAdapter);
-        Button convertButton = (Button) getView().findViewById(R.id.buttonConvert);
-        final TextView firstValue = (TextView) getView().findViewById(R.id.firstValue);
-        final TextView secondValue = (TextView) getView().findViewById(R.id.secondValue);
-        final TextView thirdValue = (TextView) getView().findViewById(R.id.thirdValue);
+        binSpn.setOnItemSelectedListener(new planOnClickListener2());
+        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
+        final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String selection = binSpn.getSelectedItem().toString();
-                final EditText inputValue = (EditText) getView().findViewById(R.id.inputText);
+                final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
                 String input = inputValue.getText().toString();
+                final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
+                String input2 = inputValue2.getText().toString();
+                final EditText inputValue3 = (EditText) rootview.findViewById(R.id.inputTextBin);
+                String input3 = inputValue3.getText().toString();
                 switch (selection) {
                     case "Binary": {
-                        firstValue.setText(input);
-                        secondValue.setText(String.valueOf(Integer.parseInt(input, 2)));
-                        thirdValue.setText(Integer.toHexString(Integer.parseInt(input, 2)));
+                        if (!input3.matches("")){                                                   //check to see if input is empty
+                        firstValue.setText(input3);
+                        secondValue.setText(String.valueOf(Integer.parseInt(input3, 2)));
+                        thirdValue.setText(Integer.toHexString(Integer.parseInt(input3, 2)));
                         break;
-                    }
+                    }}
                     case "Decimal": {
+                        if (!input.matches("")){                                                   //check to see if input is empty
                         firstValue.setText(Integer.toBinaryString(Integer.parseInt(input)));
                         secondValue.setText(input);
                         thirdValue.setText(Integer.toHexString(Integer.parseInt(input)));
                         break;
-                    }
+                    }}
                     case "Hexadecimal": {
-                        firstValue.setText(Integer.toBinaryString(Integer.parseInt(input, 16)));
-                        secondValue.setText(String.valueOf(Integer.parseInt(input, 16)));
-                        thirdValue.setText(input);
+                        if (!input2.matches("")){                                                   //check to see if input is empty
+                        firstValue.setText(Integer.toBinaryString(Integer.parseInt(input2, 16)));
+                        secondValue.setText(String.valueOf(Integer.parseInt(input2, 16)));
+                        thirdValue.setText(input2);
                         break;
-                    }
+                    }}
                 }
             }
         });
@@ -233,7 +241,7 @@ public class Convert extends Fragment {
     }
 
     private void chooseDist() {
-        distSpn = (Spinner) getView().findViewById(R.id.unitSpinner);
+        distSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> distList = new ArrayList<String>();
         distList.add("Millimeters");
         distList.add("Centimeters");
@@ -247,15 +255,15 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, distList);
         distAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         distSpn.setAdapter(distAdapter);
-        Button convertButton = (Button) getView().findViewById(R.id.buttonConvert);
-        final TextView firstValue = (TextView) getView().findViewById(R.id.firstValue);
-        final TextView secondValue = (TextView) getView().findViewById(R.id.secondValue);
-        final TextView thirdValue = (TextView) getView().findViewById(R.id.thirdValue);
-        final TextView fourthValue = (TextView) getView().findViewById(R.id.fourthValue);
-        final TextView fifthValue = (TextView) getView().findViewById(R.id.fifthValue);
-        final TextView sixthValue = (TextView) getView().findViewById(R.id.sixthValue);
-        final TextView seventhValue = (TextView) getView().findViewById(R.id.seventhValue);
-        final TextView eighthValue = (TextView) getView().findViewById(R.id.eighthValue);
+        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
+        final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
+        final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
+        final TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);
+        final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
+        final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
+        final TextView eighthValue = (TextView) rootview.findViewById(R.id.eighthValue);
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -356,7 +364,7 @@ public class Convert extends Fragment {
     }
 
     private void chooseInfo() {
-        infoSpn = (Spinner) getView().findViewById(R.id.unitSpinner);
+        infoSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> infoList = new ArrayList<String>();
         infoList.add("Bit");
         infoList.add("Byte");
@@ -369,14 +377,14 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, infoList);
         infoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         infoSpn.setAdapter(infoAdapter);
-        Button convertButton = (Button) getView().findViewById(R.id.buttonConvert);
-        final TextView firstValue = (TextView) getView().findViewById(R.id.firstValue);
-        final TextView secondValue = (TextView) getView().findViewById(R.id.secondValue);
-        final TextView thirdValue = (TextView) getView().findViewById(R.id.thirdValue);
-        final TextView fourthValue = (TextView) getView().findViewById(R.id.fourthValue);
-        final TextView fifthValue = (TextView) getView().findViewById(R.id.fifthValue);
-        final TextView sixthValue = (TextView) getView().findViewById(R.id.sixthValue);
-        final TextView seventhValue = (TextView) getView().findViewById(R.id.seventhValue);
+        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
+        final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
+        final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
+        final TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);
+        final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
+        final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -459,7 +467,7 @@ public class Convert extends Fragment {
     }
 
     private void chooseSpd() {
-        spdSpn = (Spinner) getView().findViewById(R.id.unitSpinner);
+        spdSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> speedList = new ArrayList<String>();
         speedList.add("Meters per second");
         speedList.add("Kilometers per second");
@@ -472,14 +480,14 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, speedList);
         speedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spdSpn.setAdapter(speedAdapter);
-        Button convertButton = (Button) getView().findViewById(R.id.buttonConvert);
-        final TextView firstValue = (TextView) getView().findViewById(R.id.firstValue);
-        final TextView secondValue = (TextView) getView().findViewById(R.id.secondValue);
-        final TextView thirdValue = (TextView) getView().findViewById(R.id.thirdValue);
-        final TextView fourthValue = (TextView) getView().findViewById(R.id.fourthValue);
-        final TextView fifthValue = (TextView) getView().findViewById(R.id.fifthValue);
-        final TextView sixthValue = (TextView) getView().findViewById(R.id.sixthValue);
-        final TextView seventhValue = (TextView) getView().findViewById(R.id.seventhValue);
+        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
+        final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
+        final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
+        final TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);
+        final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
+        final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -561,7 +569,7 @@ public class Convert extends Fragment {
     }
 
     private void chooseTemp() {
-        tempSpn = (Spinner) getView().findViewById(R.id.unitSpinner);
+        tempSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> tempList = new ArrayList<String>();
         tempList.add("Fahrenheit");
         tempList.add("Celsius");
@@ -570,11 +578,11 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, tempList);
         tempAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tempSpn.setAdapter(tempAdapter);
-        Button convertButton = (Button) getView().findViewById(R.id.buttonConvert);
-        final EditText inputValue = (EditText) getView().findViewById(R.id.inputText);
-        final TextView firstValue = (TextView) getView().findViewById(R.id.firstValue);
-        final TextView secondValue = (TextView) getView().findViewById(R.id.secondValue);
-        final TextView thirdValue = (TextView) getView().findViewById(R.id.thirdValue);
+        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
+        final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -610,7 +618,7 @@ public class Convert extends Fragment {
     }
 
     private void chooseTime() {
-        timeSpn = (Spinner) getView().findViewById(R.id.unitSpinner);
+        timeSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> timeList = new ArrayList<String>();
         timeList.add("Seconds");
         timeList.add("Minutes");
@@ -624,19 +632,19 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, timeList);
         timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         timeSpn.setAdapter(timeAdapter);
-        Button convertButton = (Button) getView().findViewById(R.id.buttonConvert);
-        final TextView firstValue = (TextView) getView().findViewById(R.id.firstValue);
-        final TextView secondValue = (TextView) getView().findViewById(R.id.secondValue);
-        final TextView thirdValue = (TextView) getView().findViewById(R.id.thirdValue);
-        final TextView fourthValue = (TextView) getView().findViewById(R.id.fourthValue);
-        final TextView fifthValue = (TextView) getView().findViewById(R.id.fifthValue);
-        final TextView sixthValue = (TextView) getView().findViewById(R.id.sixthValue);
-        final TextView seventhValue = (TextView) getView().findViewById(R.id.seventhValue);
-        final TextView eighthValue = (TextView) getView().findViewById(R.id.eighthValue);
+        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
+        final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
+        final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
+        final TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);
+        final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
+        final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
+        final TextView eighthValue = (TextView) rootview.findViewById(R.id.eighthValue);
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String selection = areaSpn.getSelectedItem().toString();
+                String selection = timeSpn.getSelectedItem().toString();
                 switch (selection) {
                     case "Seconds": {
                         firstValue.setText(convertNumber(1));
@@ -732,7 +740,7 @@ public class Convert extends Fragment {
     }
 
     private void chooseWgt() {
-        wgtSpn = (Spinner) getView().findViewById(R.id.unitSpinner);
+        wgtSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> wgtList = new ArrayList<String>();
         wgtList.add("Milligram");
         wgtList.add("Carat");
@@ -746,19 +754,19 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, wgtList);
         wgtAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         wgtSpn.setAdapter(wgtAdapter);
-        Button convertButton = (Button) getView().findViewById(R.id.buttonConvert);
-        final TextView firstValue = (TextView) getView().findViewById(R.id.firstValue);
-        final TextView secondValue = (TextView) getView().findViewById(R.id.secondValue);
-        final TextView thirdValue = (TextView) getView().findViewById(R.id.thirdValue);
-        final TextView fourthValue = (TextView) getView().findViewById(R.id.fourthValue);
-        final TextView fifthValue = (TextView) getView().findViewById(R.id.fifthValue);
-        final TextView sixthValue = (TextView) getView().findViewById(R.id.sixthValue);
-        final TextView seventhValue = (TextView) getView().findViewById(R.id.seventhValue);
-        final TextView eighthValue = (TextView) getView().findViewById(R.id.eighthValue);
+        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
+        final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
+        final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
+        final TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);
+        final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
+        final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
+        final TextView eighthValue = (TextView) rootview.findViewById(R.id.eighthValue);
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String selection = areaSpn.getSelectedItem().toString();
+                String selection = wgtSpn.getSelectedItem().toString();
                 switch (selection) {
                     case "Milligram": {
                         firstValue.setText(convertNumber(1));
@@ -854,7 +862,7 @@ public class Convert extends Fragment {
     }
 
     private void chooseVol() {
-        volSpn = (Spinner) getView().findViewById(R.id.unitSpinner);
+        volSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> volList = new ArrayList<String>();
         volList.add("Milliliter");
         volList.add("Teaspoon");
@@ -872,23 +880,23 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, volList);
         volAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         volSpn.setAdapter(volAdapter);
-        Button convertButton = (Button) getView().findViewById(R.id.buttonConvert);
-        final TextView firstValue = (TextView) getView().findViewById(R.id.firstValue);
-        final TextView secondValue = (TextView) getView().findViewById(R.id.secondValue);
-        final TextView thirdValue = (TextView) getView().findViewById(R.id.thirdValue);
-        final TextView fourthValue = (TextView) getView().findViewById(R.id.fourthValue);
-        final TextView fifthValue = (TextView) getView().findViewById(R.id.fifthValue);
-        final TextView sixthValue = (TextView) getView().findViewById(R.id.sixthValue);
-        final TextView seventhValue = (TextView) getView().findViewById(R.id.seventhValue);
-        final TextView eighthValue = (TextView) getView().findViewById(R.id.eighthValue);
-        final TextView ninthValue = (TextView) getView().findViewById(R.id.ninthValue);
-        final TextView tenthValue = (TextView) getView().findViewById(R.id.tenthValue);
-        final TextView eleventhValue = (TextView) getView().findViewById(R.id.eleventhValue);
-        final TextView twelfthValue = (TextView) getView().findViewById(R.id.twelfthValue);
+        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
+        final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
+        final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
+        final TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);
+        final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
+        final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
+        final TextView eighthValue = (TextView) rootview.findViewById(R.id.eighthValue);
+        final TextView ninthValue = (TextView) rootview.findViewById(R.id.ninthValue);
+        final TextView tenthValue = (TextView) rootview.findViewById(R.id.tenthValue);
+        final TextView eleventhValue = (TextView) rootview.findViewById(R.id.eleventhValue);
+        final TextView twelfthValue = (TextView) rootview.findViewById(R.id.twelfthValue);
         convertButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String selection = areaSpn.getSelectedItem().toString();
+                String selection = volSpn.getSelectedItem().toString();
                 switch (selection) {
                     case "Milliliter": {
                         firstValue.setText(convertNumber(1));
@@ -1084,18 +1092,18 @@ public class Convert extends Fragment {
                                    long id) {
 
             parent.getItemAtPosition(pos);
-            TextView firstName = (TextView) getView().findViewById(R.id.firstName);
-            TextView secondName = (TextView) getView().findViewById(R.id.secondName);
-            TextView thirdName = (TextView) getView().findViewById(R.id.thirdName);
-            TextView fourthName = (TextView) getView().findViewById(R.id.fourthName);
-            TextView fifthName = (TextView) getView().findViewById(R.id.fifthName);
-            TextView sixthName = (TextView) getView().findViewById(R.id.sixthName);
-            TextView seventhName = (TextView) getView().findViewById(R.id.seventhName);
-            TextView eighthName = (TextView) getView().findViewById(R.id.eighthName);
-            TextView ninthName = (TextView) getView().findViewById(R.id.ninthName);
-            TextView tenthName = (TextView) getView().findViewById(R.id.tenthName);
-            TextView eleventhName = (TextView) getView().findViewById(R.id.eleventhName);
-            TextView twelfthName = (TextView) getView().findViewById(R.id.twelfthName);
+            TextView firstName = (TextView) rootview.findViewById(R.id.firstName);
+            TextView secondName = (TextView) rootview.findViewById(R.id.secondName);
+            TextView thirdName = (TextView) rootview.findViewById(R.id.thirdName);
+            TextView fourthName = (TextView) rootview.findViewById(R.id.fourthName);
+            TextView fifthName = (TextView) rootview.findViewById(R.id.fifthName);
+            TextView sixthName = (TextView) rootview.findViewById(R.id.sixthName);
+            TextView seventhName = (TextView) rootview.findViewById(R.id.seventhName);
+            TextView eighthName = (TextView) rootview.findViewById(R.id.eighthName);
+            TextView ninthName = (TextView) rootview.findViewById(R.id.ninthName);
+            TextView tenthName = (TextView) rootview.findViewById(R.id.tenthName);
+            TextView eleventhName = (TextView) rootview.findViewById(R.id.eleventhName);
+            TextView twelfthName = (TextView) rootview.findViewById(R.id.twelfthName);
             zeroNames();
             zeroValues();
             if (pos == 0) {
@@ -1106,11 +1114,15 @@ public class Convert extends Fragment {
                 fifthName.setText("Hectares: ");
                 sixthName.setText("Square Kilometers: ");
                 seventhName.setText("Square Miles: ");
+                resetBoxes();
+                quickVis2();
                 chooseArea();
             } else if (pos == 1) {
                 firstName.setText("Binary: ");
                 secondName.setText("Decimal: ");
                 thirdName.setText("Hexadecimal:");
+                resetBinBoxes();
+                quickVis();
                 chooseBin();
             } else if (pos == 2) {
                 firstName.setText("Millimeters: ");
@@ -1121,6 +1133,8 @@ public class Convert extends Fragment {
                 sixthName.setText("Feet: ");
                 seventhName.setText("Yards: ");
                 eighthName.setText("Miles: ");
+                resetBoxes();
+                quickVis2();
                 chooseDist();
             } else if (pos == 3) {
                 firstName.setText("Bit: ");
@@ -1130,6 +1144,8 @@ public class Convert extends Fragment {
                 fifthName.setText("Gigabyte: ");
                 sixthName.setText("Terabyte: ");
                 seventhName.setText("Petrabyte: ");
+                resetBoxes();
+                quickVis2();
                 chooseInfo();
             } else if (pos == 4) {
                 firstName.setText("Meters per second: ");
@@ -1139,11 +1155,15 @@ public class Convert extends Fragment {
                 fifthName.setText("Miles per minute: ");
                 sixthName.setText("Miles per hour: ");
                 seventhName.setText("Knots: ");
+                resetBoxes();
+                quickVis2();
                 chooseSpd();
             } else if (pos == 5) {
                 firstName.setText("Fahrenheit: ");
                 secondName.setText("Celsius: ");
                 thirdName.setText("Kelvin: ");
+                resetBoxes();
+                quickVis2();
                 chooseTemp();
             } else if (pos == 6) {
                 firstName.setText("Seconds: ");
@@ -1154,6 +1174,8 @@ public class Convert extends Fragment {
                 sixthName.setText("Months: ");
                 seventhName.setText("Non-Leap Years: ");
                 eighthName.setText("Leap Years: ");
+                resetBoxes();
+                quickVis2();
                 chooseTime();
             } else if (pos == 7) {
                 firstName.setText("Milligram: ");
@@ -1164,6 +1186,8 @@ public class Convert extends Fragment {
                 sixthName.setText("Kilogram: ");
                 seventhName.setText("Stone: ");
                 eighthName.setText("Metric ton: ");
+                resetBoxes();
+                quickVis2();
                 chooseWgt();
             } else if (pos == 8) {
                 firstName.setText("Milliliter: ");
@@ -1178,9 +1202,51 @@ public class Convert extends Fragment {
                 tenthName.setText("Cubic yard: ");
                 eleventhName.setText("Cubic meter: ");
                 twelfthName.setText("Cubic mile: ");
+                resetBoxes();
+                quickVis2();
                 chooseVol();
             }
         }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> arg0) {
+            // TODO Auto-generated method stub
+
+        }
+    }
+    public class planOnClickListener2 implements AdapterView.OnItemSelectedListener {
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View v, int pos,
+                                   long id) {
+            final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+            final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
+            final EditText inputValue3 = (EditText) rootview.findViewById(R.id.inputTextBin);
+            inputValue.setText("");
+            inputValue2.setText("");
+            inputValue3.setText("");
+            binSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
+            String selection = binSpn.getSelectedItem().toString();
+            switch (selection){
+                case "Binary":{
+                    inputValue.setVisibility(View.INVISIBLE);
+                    inputValue2.setVisibility(View.INVISIBLE);
+                    inputValue3.setVisibility(View.VISIBLE);
+                    break;
+                }
+                case "Decimal": {
+                    inputValue.setVisibility(View.VISIBLE);
+                    inputValue2.setVisibility(View.INVISIBLE);
+                    inputValue3.setVisibility(View.INVISIBLE);
+                    break;
+                }
+                case "Hexadecimal": {
+                    inputValue.setVisibility(View.INVISIBLE);
+                    inputValue2.setVisibility(View.VISIBLE);
+                    inputValue3.setVisibility(View.INVISIBLE);
+                    break;
+                }
+        }}
 
         @Override
         public void onNothingSelected(AdapterView<?> arg0) {
@@ -1209,23 +1275,76 @@ public class Convert extends Fragment {
         return Double.valueOf(twoDForm.format(d));
     }
     String convertNumber(double var) {
-        final EditText inputValue = (EditText) getView().findViewById(R.id.inputText);
-        double input = Double.valueOf(inputValue.getText().toString());
-        return Double.toString(roundDecimals(input * var));
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        String input = inputValue.getText().toString();
+        if (input.matches("")){
+            return input;
+        }
+        else {
+            double input2 = Double.valueOf(input);
+            return Double.toString(roundDecimals(input2 * var));
+        }
     }
+    public void resetBoxes(){
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        inputValue.setVisibility(View.VISIBLE);
+        inputValue.setText("");
+        final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
+        inputValue2.setVisibility(View.INVISIBLE);
+        inputValue2.setText("");
+        final EditText inputValue3 = (EditText) rootview.findViewById(R.id.inputTextBin);
+        inputValue3.setVisibility(View.INVISIBLE);
+        inputValue3.setText("");
+    }
+    public void resetBinBoxes(){
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        inputValue.setVisibility(View.INVISIBLE);
+        inputValue.setText("");
+        final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
+        inputValue2.setVisibility(View.INVISIBLE);
+        inputValue2.setText("");
+        final EditText inputValue3 = (EditText) rootview.findViewById(R.id.inputTextBin);
+        inputValue3.setVisibility(View.VISIBLE);
+        inputValue3.setText("");
+    }
+    public void quickVis(){
+        Button quickSet1 = (Button) rootview.findViewById(R.id.quickSet1);
+        Button quickSet2 = (Button) rootview.findViewById(R.id.quickSet2);
+        Button quickSet3 = (Button) rootview.findViewById(R.id.quickSet3);
+        Button quickSet4 = (Button) rootview.findViewById(R.id.quickSet4);
+        Button quickSet5 = (Button) rootview.findViewById(R.id.quickSet5);
+        quickSet1.setVisibility(View.INVISIBLE);
+        quickSet2.setVisibility(View.INVISIBLE);
+        quickSet3.setVisibility(View.INVISIBLE);
+        quickSet4.setVisibility(View.INVISIBLE);
+        quickSet5.setVisibility(View.INVISIBLE);
+    }
+    public void quickVis2(){
+        Button quickSet1 = (Button) rootview.findViewById(R.id.quickSet1);
+        Button quickSet2 = (Button) rootview.findViewById(R.id.quickSet2);
+        Button quickSet3 = (Button) rootview.findViewById(R.id.quickSet3);
+        Button quickSet4 = (Button) rootview.findViewById(R.id.quickSet4);
+        Button quickSet5 = (Button) rootview.findViewById(R.id.quickSet5);
+        quickSet1.setVisibility(View.VISIBLE);
+        quickSet2.setVisibility(View.VISIBLE);
+        quickSet3.setVisibility(View.VISIBLE);
+        quickSet4.setVisibility(View.VISIBLE);
+        quickSet5.setVisibility(View.VISIBLE);
+    }
+
     private void zeroValues() {
-        TextView firstValue = (TextView) getView().findViewById(R.id.firstValue);
-        TextView secondValue = (TextView) getView().findViewById(R.id.secondValue);
-        TextView thirdValue = (TextView) getView().findViewById(R.id.thirdValue);
-        TextView fourthValue = (TextView) getView().findViewById(R.id.fourthValue);
-        TextView fifthValue = (TextView) getView().findViewById(R.id.fifthValue);
-        TextView sixthValue = (TextView) getView().findViewById(R.id.sixthValue);
-        TextView seventhValue = (TextView) getView().findViewById(R.id.seventhValue);
-        TextView eighthValue = (TextView) getView().findViewById(R.id.eighthValue);
-        TextView ninthValue = (TextView) getView().findViewById(R.id.ninthValue);
-        TextView tenthValue = (TextView) getView().findViewById(R.id.tenthValue);
-        TextView eleventhValue = (TextView) getView().findViewById(R.id.eleventhValue);
-        TextView twelfthValue = (TextView) getView().findViewById(R.id.twelfthValue);
+        TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
+        TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
+        TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
+        TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);
+        TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
+        TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
+        TextView eighthValue = (TextView) rootview.findViewById(R.id.eighthValue);
+        TextView ninthValue = (TextView) rootview.findViewById(R.id.ninthValue);
+        TextView tenthValue = (TextView) rootview.findViewById(R.id.tenthValue);
+        TextView eleventhValue = (TextView) rootview.findViewById(R.id.eleventhValue);
+        TextView twelfthValue = (TextView) rootview.findViewById(R.id.twelfthValue);
         firstValue.setText("");
         secondValue.setText("");
         thirdValue.setText("");
@@ -1240,18 +1359,18 @@ public class Convert extends Fragment {
         twelfthValue.setText("");
     }
     private void zeroNames() {
-        TextView firstName = (TextView) getView().findViewById(R.id.firstName);
-        TextView secondName = (TextView) getView().findViewById(R.id.secondName);
-        TextView thirdName = (TextView) getView().findViewById(R.id.thirdName);
-        TextView fourthName = (TextView) getView().findViewById(R.id.fourthName);
-        TextView fifthName = (TextView) getView().findViewById(R.id.fifthName);
-        TextView sixthName = (TextView) getView().findViewById(R.id.sixthName);
-        TextView seventhName = (TextView) getView().findViewById(R.id.seventhName);
-        TextView eighthName = (TextView) getView().findViewById(R.id.eighthName);
-        TextView ninthName = (TextView) getView().findViewById(R.id.ninthName);
-        TextView tenthName = (TextView) getView().findViewById(R.id.tenthName);
-        TextView eleventhName = (TextView) getView().findViewById(R.id.eleventhName);
-        TextView twelfthName = (TextView) getView().findViewById(R.id.twelfthName);
+        TextView firstName = (TextView) rootview.findViewById(R.id.firstName);
+        TextView secondName = (TextView) rootview.findViewById(R.id.secondName);
+        TextView thirdName = (TextView) rootview.findViewById(R.id.thirdName);
+        TextView fourthName = (TextView) rootview.findViewById(R.id.fourthName);
+        TextView fifthName = (TextView) rootview.findViewById(R.id.fifthName);
+        TextView sixthName = (TextView) rootview.findViewById(R.id.sixthName);
+        TextView seventhName = (TextView) rootview.findViewById(R.id.seventhName);
+        TextView eighthName = (TextView) rootview.findViewById(R.id.eighthName);
+        TextView ninthName = (TextView) rootview.findViewById(R.id.ninthName);
+        TextView tenthName = (TextView) rootview.findViewById(R.id.tenthName);
+        TextView eleventhName = (TextView) rootview.findViewById(R.id.eleventhName);
+        TextView twelfthName = (TextView) rootview.findViewById(R.id.twelfthName);
         firstName.setText("");
         secondName.setText("");
         thirdName.setText("");
