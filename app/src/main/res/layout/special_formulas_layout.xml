@@ -87,10 +87,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="30sp"
-        android:text="XXXX"
+        android:text=""
         android:id="@+id/areaTotal"
         android:paddingTop="10dp"
-        android:maxLength="8"
+        android:maxLength="11"
         android:gravity="center_horizontal"
         android:layout_toRightOf="@+id/areaSign2"
         android:layout_alignBottom="@+id/widthIn"/>
@@ -115,7 +115,7 @@
         android:paddingRight="10dp"
         android:paddingLeft="5dp"
         android:gravity="right"
-        android:layout_below="@+id/sfConvert" />
+        android:layout_below="@+id/sfError" />
 
     <EditText
         android:layout_width="80dp"
@@ -157,10 +157,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="30sp"
-        android:text="XXXX"
+        android:text=""
         android:id="@+id/aocTotal"
         android:paddingTop="10dp"
-        android:maxLength="8"
+        android:maxLength="11"
         android:gravity="center_horizontal"
         android:layout_toRightOf="@+id/aocSign"
         android:layout_alignBottom="@+id/radiusIn"/>
@@ -184,7 +184,7 @@
         android:id="@+id/circTitle"
         android:paddingTop="30dp"
         android:paddingRight="10dp"
-        android:layout_below="@+id/sfConvert2"
+        android:layout_below="@+id/sfError2"
         android:gravity="right"/>
 
     <EditText
@@ -227,10 +227,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textSize="30sp"
-        android:text="XXXX"
+        android:text=""
         android:id="@+id/circTotal"
         android:paddingTop="10dp"
-        android:maxLength="8"
+        android:maxLength="11"
         android:gravity="center_horizontal"
         android:layout_toRightOf="@+id/circSign"
         android:layout_alignBottom="@+id/radiusIn2"/>
@@ -243,5 +243,44 @@
         android:id="@+id/sfConvert3"
         android:layout_below="@+id/circTitle"
         android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/sfError"
+        android:text="Please enter numbers in both boxes."
+        android:layout_below="@id/sfConvert"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#ff0000"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/sfError2"
+        android:text="Please enter an acceptable number."
+        android:layout_below="@id/sfConvert2"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#ff0000"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/sfError3"
+        android:text="Please enter an acceptable number."
+        android:layout_below="@id/sfConvert3"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#ff0000"
+        android:visibility="invisible"/>
 
 </RelativeLayout>

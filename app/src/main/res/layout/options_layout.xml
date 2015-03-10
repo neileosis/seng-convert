@@ -62,6 +62,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Choose Background Color:"
         android:id="@+id/bgTitle"
@@ -71,11 +72,57 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Custom Color (6 characters):"
+        android:id="@+id/customTitle"
+        android:layout_below="@+id/button4" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Change"
+        android:id="@+id/customButton"
+        android:layout_below="@+id/customTitle"
+        android:layout_alignLeft="@+id/button5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Color change updated. Change page for selected change to take effect."
         android:id="@+id/note"
-        android:layout_below="@id/button4"
+        android:layout_below="@+id/customButton"
         android:textColor="#ff0000"
         android:visibility="invisible"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/customValue"
+        android:digits="0123456789abcdefABCDEF"
+        android:maxLength="6"
+        android:gravity="center_vertical"
+        android:layout_below="@id/customTitle"
+        android:layout_alignLeft="@+id/button4"
+        android:layout_alignRight="@+id/button4"
+        android:layout_alignBottom="@id/customButton"
+        android:layout_alignTop="@id/customButton"
+        android:layout_toLeftOf="@+id/customButton" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:gravity="center_vertical"
+        android:text="#"
+        android:id="@+id/textView"
+        android:layout_alignBottom="@id/customButton"
+        android:layout_alignTop="@id/customButton"
+        android:layout_below="@+id/customTitle"
+        android:layout_toLeftOf="@+id/customValue"
+        android:layout_toStartOf="@+id/customValue" />
 
 </RelativeLayout>

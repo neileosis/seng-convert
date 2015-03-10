@@ -21,6 +21,7 @@ import java.text.DecimalFormat;
 public class Convert extends Fragment {
     View rootview;
     public Spinner firstSpinner, areaSpn, binSpn, distSpn, spdSpn, infoSpn, tempSpn, timeSpn, wgtSpn, volSpn;
+    public int decCount, dashCount;
 
     @Nullable
     @Override
@@ -206,29 +207,29 @@ public class Convert extends Fragment {
             @Override
             public void onClick(View v) {
                 String selection = binSpn.getSelectedItem().toString();
-                final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
-                String input = inputValue.getText().toString();
+                final EditText inputValue = (EditText) rootview.findViewById(R.id.inputTextDec);
                 final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
-                String input2 = inputValue2.getText().toString();
                 final EditText inputValue3 = (EditText) rootview.findViewById(R.id.inputTextBin);
+                String input = inputValue.getText().toString();
+                String input2 = inputValue2.getText().toString();
                 String input3 = inputValue3.getText().toString();
                 switch (selection) {
                     case "Binary": {
-                        if (!input3.matches("")){                                                   //check to see if input is empty
+                        if (!input3.matches("") && !errorCheck(input3)){                                                  //check to see if input is empty or error
                         firstValue.setText(input3);
                         secondValue.setText(String.valueOf(Integer.parseInt(input3, 2)));
                         thirdValue.setText(Integer.toHexString(Integer.parseInt(input3, 2)));
                         break;
                     }}
                     case "Decimal": {
-                        if (!input.matches("")){                                                   //check to see if input is empty
+                        if (!input.matches("") && !errorCheck(input)){                                                   //check to see if input is empty or error
                         firstValue.setText(Integer.toBinaryString(Integer.parseInt(input)));
                         secondValue.setText(input);
                         thirdValue.setText(Integer.toHexString(Integer.parseInt(input)));
                         break;
                     }}
                     case "Hexadecimal": {
-                        if (!input2.matches("")){                                                   //check to see if input is empty
+                        if (!input2.matches("") && !errorCheck(input2)){                                                  //check to see if input is empty or error
                         firstValue.setText(Integer.toBinaryString(Integer.parseInt(input2, 16)));
                         secondValue.setText(String.valueOf(Integer.parseInt(input2, 16)));
                         thirdValue.setText(input2);
@@ -1219,7 +1220,7 @@ public class Convert extends Fragment {
         @Override
         public void onItemSelected(AdapterView<?> parent, View v, int pos,
                                    long id) {
-            final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+            final EditText inputValue = (EditText) rootview.findViewById(R.id.inputTextDec);
             final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
             final EditText inputValue3 = (EditText) rootview.findViewById(R.id.inputTextBin);
             inputValue.setText("");
@@ -1270,14 +1271,47 @@ public class Convert extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    double roundDecimals(double d) {
+    public void resetBoxes(){
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
+        final EditText inputValue3 = (EditText) rootview.findViewById(R.id.inputTextBin);
+        final EditText inputValue4 = (EditText) rootview.findViewById(R.id.inputTextDec);
+        inputValue.setVisibility(View.VISIBLE);
+        inputValue2.setVisibility(View.INVISIBLE);
+        inputValue3.setVisibility(View.INVISIBLE);
+        inputValue4.setVisibility(View.INVISIBLE);
+        inputValue.setText("");
+        inputValue2.setText("");
+        inputValue3.setText("");
+        inputValue4.setText("");
+    }
+    public void resetBinBoxes(){
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
+        final EditText inputValue3 = (EditText) rootview.findViewById(R.id.inputTextBin);
+        final EditText inputValue4 = (EditText) rootview.findViewById(R.id.inputTextDec);
+        inputValue.setVisibility(View.INVISIBLE);
+        inputValue2.setVisibility(View.INVISIBLE);
+        inputValue3.setVisibility(View.VISIBLE);
+        inputValue4.setVisibility(View.INVISIBLE);
+        inputValue.setText("");
+        inputValue2.setText("");
+        inputValue3.setText("");
+        inputValue4.setText("");
+    }
+
+    public double roundDecimals(double d) {
         DecimalFormat twoDForm = new DecimalFormat("#.##########E0");
         return Double.valueOf(twoDForm.format(d));
     }
-    String convertNumber(double var) {
+
+    public String convertNumber(double var) {
         final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
         String input = inputValue.getText().toString();
-        if (input.matches("")){
+        if (errorCheck(input)){
+            return "";
+        }
+        else if (input.matches("")){
             return input;
         }
         else {
@@ -1285,28 +1319,45 @@ public class Convert extends Fragment {
             return Double.toString(roundDecimals(input2 * var));
         }
     }
-    public void resetBoxes(){
-        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
-        inputValue.setVisibility(View.VISIBLE);
-        inputValue.setText("");
-        final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
-        inputValue2.setVisibility(View.INVISIBLE);
-        inputValue2.setText("");
-        final EditText inputValue3 = (EditText) rootview.findViewById(R.id.inputTextBin);
-        inputValue3.setVisibility(View.INVISIBLE);
-        inputValue3.setText("");
+
+    public boolean errorCheck(String input){
+        final TextView error = (TextView) rootview.findViewById(R.id.error);
+        decCount = countOccurrences(input,'.');
+        dashCount = countOccurrences(input,'-');
+        if (decCount != 0 && decCount != 1){
+            error.setText("Too many decimal points. Maximum 1.");
+            error.setVisibility(View.VISIBLE);
+            return true;
+        }
+        else if (dashCount != 0 && dashCount != 1 || dashCount == 1 && input.charAt(0)!='-'){
+            error.setText("Please include only one -.\nAnd limit it to the beginning.");
+            error.setVisibility(View.VISIBLE);
+            return true;
+        }
+        else if (input.contentEquals("-") || input.contentEquals(".")){
+            error.setText("Please enter a numerical value.");
+            error.setVisibility(View.VISIBLE);
+            return true;
+        }
+        else {
+            error.setVisibility(View.INVISIBLE);
+            return false;
+        }
     }
-    public void resetBinBoxes(){
-        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
-        inputValue.setVisibility(View.INVISIBLE);
-        inputValue.setText("");
-        final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
-        inputValue2.setVisibility(View.INVISIBLE);
-        inputValue2.setText("");
-        final EditText inputValue3 = (EditText) rootview.findViewById(R.id.inputTextBin);
-        inputValue3.setVisibility(View.VISIBLE);
-        inputValue3.setText("");
+
+    public int countOccurrences(String input, char find)
+    {
+        int count = 0;
+        for (int i=0; i < input.length(); i++)
+        {
+            if (input.charAt(i) == find)
+            {
+                count++;
+            }
+        }
+        return count;
     }
+
     public void quickVis(){
         Button quickSet1 = (Button) rootview.findViewById(R.id.quickSet1);
         Button quickSet2 = (Button) rootview.findViewById(R.id.quickSet2);

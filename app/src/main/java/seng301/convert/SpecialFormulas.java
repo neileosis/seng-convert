@@ -11,12 +11,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import java.lang.Math.*;
+import java.text.DecimalFormat;
 
-/**
- * Created by neileosis on 15-02-09.
- */
 public class SpecialFormulas extends Fragment{
     View rootview;
+    public int decCount, dashCount;
 
     @Nullable
     @Override
@@ -46,27 +45,45 @@ public class SpecialFormulas extends Fragment{
         final TextView areaTotal = (TextView) getView().findViewById(R.id.areaTotal);
         final EditText areaInput = (EditText) getView().findViewById(R.id.lengthIn);
         final EditText areaInput2 = (EditText) getView().findViewById(R.id.widthIn);
-        double input = Double.valueOf(areaInput.getText().toString());
-        double input2 = Double.valueOf(areaInput2.getText().toString());
-        areaTotal.setText(Double.toString(input * input2));
+        final TextView error = (TextView) getView().findViewById(R.id.sfError);
+        String input = areaInput.getText().toString();
+        String input2 = areaInput2.getText().toString();
+        if (input.matches("") || input2.matches("")) {
+            error.setVisibility(View.VISIBLE);
+        }
+        else {
+            error.setVisibility(View.INVISIBLE);
+            areaTotal.setText(sfConvert(input,input2, 0));
+        }
     }
 
     public void aocCalc(){
         final TextView aocTotal = (TextView) getView().findViewById(R.id.aocTotal);
         final EditText aocInput = (EditText) getView().findViewById(R.id.radiusIn);
-        double input = Double.valueOf(aocInput.getText().toString());
-        input *= input;
-        input *= Math.PI;
-        aocTotal.setText(Double.toString(input));
+        String input = aocInput.getText().toString();
+        if (!input.matches(""))
+            aocTotal.setText(sfConvert(input,input,1));
     }
 
     public void circCalc(){
         final TextView circTotal = (TextView) getView().findViewById(R.id.circTotal);
         final EditText circInput = (EditText) getView().findViewById(R.id.radiusIn2);
-        double input = Double.valueOf(circInput.getText().toString());
-        input *= Math.PI;
-        circTotal.setText(Double.toString(input*2));
-
+        String input = circInput.getText().toString();
+        if (!input.matches(""))
+            circTotal.setText(sfConvert(input, "2", 2));
     }
 
+    public String sfConvert(String var, String var2, int formula) {
+        if (formula == 1 || formula == 2) {
+            return Double.toString(roundDecimals(Double.valueOf(var) * Double.valueOf(var2) * Math.PI));
+        }
+        else {
+            return Double.toString(roundDecimals(Double.valueOf(var) * Double.valueOf(var2)));
+        }
+    }
+
+    public double roundDecimals(double d) {
+        DecimalFormat twoDForm = new DecimalFormat("#.######E0");
+        return Double.valueOf(twoDForm.format(d));
+    }
 }

@@ -34,6 +34,16 @@
         android:layout_centerHorizontal="true"
         android:visibility="invisible"/>
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:digits="0123456789"
+        android:ems="10"
+        android:layout_below="@+id/quickSet1"
+        android:id="@+id/inputTextDec"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -102,23 +112,23 @@
     <Spinner
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/unitSpinner"
-        android:spinnerMode="dropdown"
-        android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        android:focusableInTouchMode="false"
-        android:layout_below="@+id/unitSpinner2"
-        android:layout_centerHorizontal="true"/>
-
-    <Spinner
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
         android:id="@+id/unitSpinner2"
         android:spinnerMode="dropdown"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
         android:focusableInTouchMode="false"
         android:entries="@array/units"
+        android:layout_centerHorizontal="true"/>
+
+    <Spinner
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/unitSpinner"
+        android:spinnerMode="dropdown"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:focusableInTouchMode="false"
+        android:layout_below="@+id/unitSpinner2"
         android:layout_centerHorizontal="true"/>
 
     <TextView
@@ -378,6 +388,19 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/error"
+        android:text=""
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:textColor="#ff0000"
         android:visibility="invisible"/>
 
 </RelativeLayout>
