@@ -74,5 +74,4 @@ public class SpecialFormulasTest extends ActivityInstrumentationTestCase2 {
         int range = Math.abs(max - min) + 1;
         return (int)(Math.random() * range) + (min <= max ? min : max);
     }
-
 }
