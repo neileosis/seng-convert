@@ -29,8 +29,8 @@ public class ExtensiveTest extends ActivityInstrumentationTestCase2 {
         int vInputNumber = randomWithRange(0,999999);
         int vMulNumber = 88;
         Double vMulNumber2 = 0.0166666667;
-        String vResult = Double.toString(roundDecimals(Double.valueOf(vInputNumber)*Double.valueOf(vMulNumber)));
-        String vResult2 = Double.toString(roundDecimals(Double.valueOf(vInputNumber)*vMulNumber2));
+        String vResult = Double.toString(roundDecimals(vInputNumber*vMulNumber));
+        String vResult2 = Double.toString(roundDecimals(vInputNumber*vMulNumber2));
 
         solo.clickOnActionBarHomeButton();
         solo.clickInList(2);
@@ -55,7 +55,6 @@ public class ExtensiveTest extends ActivityInstrumentationTestCase2 {
         solo.pressSpinnerItem(1, 4);
         EditText vEditTextInput = (EditText) solo.getView(R.id.inputText);
         solo.enterText(vEditTextInput, String.valueOf(vInputNumber));
-        solo.clickOnButton("Convert");
         assertTrue(solo.searchText(vResult));
         TextView result = (TextView) solo.getView(R.id.fourthValue);
         assertEquals(vResult2, result.getText().toString());

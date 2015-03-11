@@ -3,6 +3,8 @@ package seng301.convert;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -88,7 +90,7 @@ public class Convert extends Fragment {
 
     private void chooseArea() {
         areaSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
-        List<String> areaList = new ArrayList<String>();
+        List<String> areaList = new ArrayList<>();
         areaList.add("Square Inches");
         areaList.add("Square Feet");
         areaList.add("Square Meters");
@@ -96,11 +98,10 @@ public class Convert extends Fragment {
         areaList.add("Hectares");
         areaList.add("Square Kilometers");
         areaList.add("Square Miles");
-        ArrayAdapter<String> areaAdapter = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> areaAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, areaList);
         areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         areaSpn.setAdapter(areaAdapter);
-        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
         final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
@@ -108,9 +109,20 @@ public class Convert extends Fragment {
         final TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);
         final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
         final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
-        convertButton.setOnClickListener(new View.OnClickListener() {
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        inputValue.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = areaSpn.getSelectedItem().toString();
                 switch (selection) {
                     case "Square Inches": {
@@ -190,60 +202,91 @@ public class Convert extends Fragment {
 
     private void chooseBin() {
         binSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
-        List<String> binList = new ArrayList<String>();
+        List<String> binList = new ArrayList<>();
         binList.add("Binary");
         binList.add("Decimal");
         binList.add("Hexadecimal");
-        ArrayAdapter<String> binAdapter = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> binAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, binList);
         binAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binSpn.setAdapter(binAdapter);
         binSpn.setOnItemSelectedListener(new planOnClickListener2());
-        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
         final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
-        convertButton.setOnClickListener(new View.OnClickListener() {
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputTextDec);
+        final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
+        final EditText inputValue3 = (EditText) rootview.findViewById(R.id.inputTextBin);
+        inputValue.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                String selection = binSpn.getSelectedItem().toString();
-                final EditText inputValue = (EditText) rootview.findViewById(R.id.inputTextDec);
-                final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
-                final EditText inputValue3 = (EditText) rootview.findViewById(R.id.inputTextBin);
-                String input = inputValue.getText().toString();
-                String input2 = inputValue2.getText().toString();
-                String input3 = inputValue3.getText().toString();
-                switch (selection) {
-                    case "Binary": {
-                        if (!input3.matches("") && !errorCheck(input3)){                                                  //check to see if input is empty or error
-                        firstValue.setText(input3);
-                        secondValue.setText(String.valueOf(Integer.parseInt(input3, 2)));
-                        thirdValue.setText(Integer.toHexString(Integer.parseInt(input3, 2)));
-                        break;
-                    }}
-                    case "Decimal": {
-                        if (!input.matches("") && !errorCheck(input)){                                                   //check to see if input is empty or error
-                        firstValue.setText(Integer.toBinaryString(Integer.parseInt(input)));
-                        secondValue.setText(input);
-                        thirdValue.setText(Integer.toHexString(Integer.parseInt(input)));
-                        break;
-                    }}
-                    case "Hexadecimal": {
-                        if (!input2.matches("") && !errorCheck(input2)){                                                  //check to see if input is empty or error
-                        firstValue.setText(Integer.toBinaryString(Integer.parseInt(input2, 16)));
-                        secondValue.setText(String.valueOf(Integer.parseInt(input2, 16)));
-                        thirdValue.setText(input2);
-                        break;
-                    }}
-                }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String input = inputValue.getText().toString();
+                        if (!input.matches("") && !errorCheck(input)){                                                   //check to see if input is empty or error
+                            firstValue.setText(Integer.toBinaryString(Integer.parseInt(input)));
+                            secondValue.setText(input);
+                            thirdValue.setText(Integer.toHexString(Integer.parseInt(input)));
+                        }
+
+                }
+        });
+        inputValue2.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String input2 = inputValue2.getText().toString();
+                        if (!input2.matches("") && !errorCheck(input2)){                                                  //check to see if input is empty or error
+                            firstValue.setText(Integer.toBinaryString(Integer.parseInt(input2, 16)));
+                            secondValue.setText(String.valueOf(Integer.parseInt(input2, 16)));
+                            thirdValue.setText(input2);
+                        }
+                }
+        });
+        inputValue3.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String input3 = inputValue3.getText().toString();
+                        if (!input3.matches("") && !errorCheck(input3)){                                                  //check to see if input is empty or error
+                            firstValue.setText(input3);
+                            secondValue.setText(String.valueOf(Integer.parseInt(input3, 2)));
+                            thirdValue.setText(Integer.toHexString(Integer.parseInt(input3, 2)));
+                }
+                }
         });
 
     }
 
     private void chooseDist() {
         distSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
-        List<String> distList = new ArrayList<String>();
+        List<String> distList = new ArrayList<>();
         distList.add("Millimeters");
         distList.add("Centimeters");
         distList.add("Meters");
@@ -252,11 +295,10 @@ public class Convert extends Fragment {
         distList.add("Feet");
         distList.add("Yards");
         distList.add("Miles");
-        ArrayAdapter<String> distAdapter = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> distAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, distList);
         distAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         distSpn.setAdapter(distAdapter);
-        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
         final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
@@ -265,9 +307,20 @@ public class Convert extends Fragment {
         final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
         final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
         final TextView eighthValue = (TextView) rootview.findViewById(R.id.eighthValue);
-        convertButton.setOnClickListener(new View.OnClickListener() {
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        inputValue.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = distSpn.getSelectedItem().toString();
                 switch (selection) {
                     case "Millimeters": {
@@ -359,14 +412,14 @@ public class Convert extends Fragment {
                         break;
                     }
                 }
-            }
+                }
         });
 
     }
 
     private void chooseInfo() {
         infoSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
-        List<String> infoList = new ArrayList<String>();
+        List<String> infoList = new ArrayList<>();
         infoList.add("Bit");
         infoList.add("Byte");
         infoList.add("Kilobyte");
@@ -374,11 +427,10 @@ public class Convert extends Fragment {
         infoList.add("Gigabyte");
         infoList.add("Terabyte");
         infoList.add("Petabyte");
-        ArrayAdapter<String> infoAdapter = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> infoAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, infoList);
         infoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         infoSpn.setAdapter(infoAdapter);
-        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
         final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
@@ -386,9 +438,20 @@ public class Convert extends Fragment {
         final TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);
         final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
         final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
-        convertButton.setOnClickListener(new View.OnClickListener() {
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        inputValue.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = distSpn.getSelectedItem().toString();
                 switch (selection) {
                     case "Bit": {
@@ -462,14 +525,14 @@ public class Convert extends Fragment {
                         break;
                     }
                 }
-            }
+                }
         });
 
     }
 
     private void chooseSpd() {
         spdSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
-        List<String> speedList = new ArrayList<String>();
+        List<String> speedList = new ArrayList<>();
         speedList.add("Meters per second");
         speedList.add("Kilometers per second");
         speedList.add("Feet per second");
@@ -477,11 +540,10 @@ public class Convert extends Fragment {
         speedList.add("Miles per minute");
         speedList.add("Miles per hour");
         speedList.add("Knots");
-        ArrayAdapter<String> speedAdapter = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> speedAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, speedList);
         speedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spdSpn.setAdapter(speedAdapter);
-        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
         final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
@@ -489,9 +551,20 @@ public class Convert extends Fragment {
         final TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);
         final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
         final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
-        convertButton.setOnClickListener(new View.OnClickListener() {
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        inputValue.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = areaSpn.getSelectedItem().toString();
                 switch (selection) {
                     case "Meters per second": {
@@ -565,62 +638,66 @@ public class Convert extends Fragment {
                         break;
                     }
                 }
-            }
+                }
         });
     }
 
     private void chooseTemp() {
         tempSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
-        List<String> tempList = new ArrayList<String>();
+        List<String> tempList = new ArrayList<>();
         tempList.add("Fahrenheit");
         tempList.add("Celsius");
         tempList.add("Kelvin");
-        ArrayAdapter<String> tempAdapter = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> tempAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, tempList);
         tempAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tempSpn.setAdapter(tempAdapter);
-        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
-        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
         final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
-        convertButton.setOnClickListener(new View.OnClickListener() {
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        inputValue.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
-                double celToFah,fahToCel,kelToFah;
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = tempSpn.getSelectedItem().toString();
-                double input = Double.valueOf(inputValue.getText().toString());
                 switch (selection) {
                     case "Fahrenheit": {
-                        fahToCel = (((input-32)*5)/9);
-                        firstValue.setText(Double.toString(input));
-                        secondValue.setText(Double.toString(fahToCel));
-                        thirdValue.setText(Double.toString(fahToCel+273.15));
+                        firstValue.setText(tempConvert(0));
+                        secondValue.setText(tempConvert(1));
+                        thirdValue.setText(tempConvert(4));
                         break;
                     }
                     case "Celsius": {
-                        celToFah = (((input*9)/5)+32);
-                        firstValue.setText(Double.toString(celToFah));
-                        secondValue.setText(Double.toString(input));
-                        thirdValue.setText(Double.toString(input+273.15));
+                        firstValue.setText(tempConvert(2));
+                        secondValue.setText(tempConvert(0));
+                        thirdValue.setText(tempConvert(5));
                         break;
                     }
                     case "Kelvin": {
-                        kelToFah = ((((input-273.15)*9)/5)+32);
-                        firstValue.setText(Double.toString(kelToFah));
-                        secondValue.setText(Double.toString(input-273.15));
-                        thirdValue.setText(Double.toString(input));
+                        firstValue.setText(tempConvert(3));
+                        secondValue.setText(tempConvert(6));
+                        thirdValue.setText(tempConvert(0));
                         break;
                     }
                 }
-            }
+                }
         });
 
     }
 
     private void chooseTime() {
         timeSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
-        List<String> timeList = new ArrayList<String>();
+        List<String> timeList = new ArrayList<>();
         timeList.add("Seconds");
         timeList.add("Minutes");
         timeList.add("Hours");
@@ -629,11 +706,10 @@ public class Convert extends Fragment {
         timeList.add("Months");
         timeList.add("Non-Leap Years");
         timeList.add("Leap Years");
-        ArrayAdapter<String> timeAdapter = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> timeAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, timeList);
         timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         timeSpn.setAdapter(timeAdapter);
-        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
         final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
@@ -642,9 +718,20 @@ public class Convert extends Fragment {
         final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
         final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
         final TextView eighthValue = (TextView) rootview.findViewById(R.id.eighthValue);
-        convertButton.setOnClickListener(new View.OnClickListener() {
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        inputValue.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = timeSpn.getSelectedItem().toString();
                 switch (selection) {
                     case "Seconds": {
@@ -736,13 +823,13 @@ public class Convert extends Fragment {
                         break;
                     }
                 }
-            }
+                }
         });
     }
 
     private void chooseWgt() {
         wgtSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
-        List<String> wgtList = new ArrayList<String>();
+        List<String> wgtList = new ArrayList<>();
         wgtList.add("Milligram");
         wgtList.add("Carat");
         wgtList.add("Gram");
@@ -751,11 +838,10 @@ public class Convert extends Fragment {
         wgtList.add("Kilogram");
         wgtList.add("Stone");
         wgtList.add("Metric ton");
-        ArrayAdapter<String> wgtAdapter = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> wgtAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, wgtList);
         wgtAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         wgtSpn.setAdapter(wgtAdapter);
-        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
         final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
@@ -764,9 +850,20 @@ public class Convert extends Fragment {
         final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
         final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
         final TextView eighthValue = (TextView) rootview.findViewById(R.id.eighthValue);
-        convertButton.setOnClickListener(new View.OnClickListener() {
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        inputValue.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = wgtSpn.getSelectedItem().toString();
                 switch (selection) {
                     case "Milligram": {
@@ -858,13 +955,13 @@ public class Convert extends Fragment {
                         break;
                     }
                 }
-            }
+                }
         });
     }
 
     private void chooseVol() {
         volSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
-        List<String> volList = new ArrayList<String>();
+        List<String> volList = new ArrayList<>();
         volList.add("Milliliter");
         volList.add("Teaspoon");
         volList.add("Tablespoon");
@@ -877,11 +974,10 @@ public class Convert extends Fragment {
         volList.add("Cubic yard");
         volList.add("Cubic meter");
         volList.add("Cubic mile");
-        ArrayAdapter<String> volAdapter = new ArrayAdapter<String>(getActivity(),
+        ArrayAdapter<String> volAdapter = new ArrayAdapter<>(getActivity(),
                 android.R.layout.simple_spinner_item, volList);
         volAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         volSpn.setAdapter(volAdapter);
-        Button convertButton = (Button) rootview.findViewById(R.id.buttonConvert);
         final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
@@ -894,9 +990,20 @@ public class Convert extends Fragment {
         final TextView tenthValue = (TextView) rootview.findViewById(R.id.tenthValue);
         final TextView eleventhValue = (TextView) rootview.findViewById(R.id.eleventhValue);
         final TextView twelfthValue = (TextView) rootview.findViewById(R.id.twelfthValue);
-        convertButton.setOnClickListener(new View.OnClickListener() {
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        inputValue.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onClick(View v) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = volSpn.getSelectedItem().toString();
                 switch (selection) {
                     case "Milliliter": {
@@ -1317,6 +1424,44 @@ public class Convert extends Fragment {
         else {
             double input2 = Double.valueOf(input);
             return Double.toString(roundDecimals(input2 * var));
+        }
+    }
+
+    public String tempConvert (int version) {
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        String input = inputValue.getText().toString();
+        if (errorCheck(input)){
+            return "";
+        }
+        else if (input.matches("") || version == 0){
+            return input;
+        }
+        else if (version == 1){
+            double value = Double.valueOf(input);
+            return Double.toString(roundDecimals(((value-32)*5)/9));
+        }
+        else if (version == 2){
+            double value = Double.valueOf(input);
+            return Double.toString(roundDecimals(((value*9)/5)+32));
+        }
+        else if (version == 3){
+            double value = Double.valueOf(input);
+            return Double.toString(roundDecimals((((value-273.15)*9)/5)+32));
+        }
+        else if (version == 4){
+            double value = Double.valueOf(input);
+            return Double.toString(roundDecimals((((value-32)*5)/9)+273.15));
+        }
+        else if (version == 5){
+            double value = Double.valueOf(input);
+            return Double.toString(roundDecimals(value+273.15));
+        }
+        else if (version == 6){
+            double value = Double.valueOf(input);
+            return Double.toString(roundDecimals(value-273.15));
+        }
+        else{
+            return "";
         }
     }
 

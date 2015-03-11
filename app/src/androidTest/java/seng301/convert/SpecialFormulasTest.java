@@ -1,10 +1,7 @@
 package seng301.convert;
 
 import android.test.ActivityInstrumentationTestCase2;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.TextView;
 import com.robotium.solo.Solo;
 import java.text.DecimalFormat;
 

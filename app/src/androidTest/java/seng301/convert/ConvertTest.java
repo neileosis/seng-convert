@@ -29,15 +29,14 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         int vInputNumber = randomWithRange(0,999999);
         int vMulNumber = 86400;
         int vMulNumber2 = 1440;
-        String vResult = Double.toString(roundDecimals(Double.valueOf(vInputNumber)*Double.valueOf(vMulNumber)));
-        String vResult2 = Double.toString(roundDecimals(Double.valueOf(vInputNumber)*Double.valueOf(vMulNumber2)));
+        String vResult = Double.toString(roundDecimals(vInputNumber*vMulNumber));
+        String vResult2 = Double.toString(roundDecimals(vInputNumber*vMulNumber2));
 
         EditText vEditTextInput = (EditText) solo.getView(R.id.inputText);
 
         solo.pressSpinnerItem(0, 6);
         solo.pressSpinnerItem(1, 3);
         solo.enterText(vEditTextInput, String.valueOf(vInputNumber));
-        solo.clickOnButton("Convert");
         assertTrue(solo.searchText(vResult));
         TextView result = (TextView) solo.getView(R.id.secondValue);
         assertEquals(vResult2, result.getText().toString());
@@ -48,15 +47,14 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         int vInputNumber = randomWithRange(0,-999999);
         int vMulNumber = 144;
         double vMulNumber2 = 9.290304e-8;
-        String vResult = Double.toString(roundDecimals(Double.valueOf(vInputNumber)*Double.valueOf(vMulNumber)));
-        String vResult2 = Double.toString(roundDecimals(Double.valueOf(vInputNumber) * vMulNumber2));
+        String vResult = Double.toString(roundDecimals(vInputNumber*vMulNumber));
+        String vResult2 = Double.toString(roundDecimals(vInputNumber * vMulNumber2));
 
         EditText vEditTextInput = (EditText) solo.getView(R.id.inputText);
 
         solo.pressSpinnerItem(0, 0);
         solo.pressSpinnerItem(1, 1);
         solo.enterText(vEditTextInput, String.valueOf(vInputNumber));
-        solo.clickOnButton("Convert");
         assertTrue(solo.searchText(vResult));
         TextView result = (TextView) solo.getView(R.id.sixthValue);
         assertEquals(vResult2, result.getText().toString());
@@ -67,15 +65,14 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         double vInputNumber = 1922337203.6854775807e10;
         double vMulNumber = 4168181825.4;
         double vMulNumber2 = 41681818254e5;
-        String vResult = Double.toString(roundDecimals(Double.valueOf(vInputNumber)*vMulNumber));
-        String vResult2 = Double.toString(roundDecimals(Double.valueOf(vInputNumber)*vMulNumber2));
+        String vResult = Double.toString(roundDecimals(vInputNumber*vMulNumber));
+        String vResult2 = Double.toString(roundDecimals(vInputNumber*vMulNumber2));
 
         EditText vEditTextInput = (EditText) solo.getView(R.id.inputText);
 
         solo.pressSpinnerItem(0, 8);
         solo.pressSpinnerItem(1, 11);
         solo.enterText(vEditTextInput, String.valueOf(vInputNumber));
-        solo.clickOnButton("Convert");
         assertTrue(solo.searchText(vResult));
         TextView result = (TextView) solo.getView(R.id.firstValue);
         assertEquals(vResult2, result.getText().toString());
@@ -86,15 +83,14 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         double vInputNumber = -1922337203.6854775807e10;
         double vMulNumber = 0.2;
         double vMulNumber2 = 2.3991275858e-16;
-        String vResult = Double.toString(roundDecimals(Double.valueOf(vInputNumber)*vMulNumber));
-        String vResult2 = Double.toString(roundDecimals(Double.valueOf(vInputNumber)*vMulNumber2));
+        String vResult = Double.toString(roundDecimals(vInputNumber*vMulNumber));
+        String vResult2 = Double.toString(roundDecimals(vInputNumber*vMulNumber2));
 
         EditText vEditTextInput = (EditText) solo.getView(R.id.inputText);
 
         solo.pressSpinnerItem(0, 8);
         solo.pressSpinnerItem(1, 0);
         solo.enterText(vEditTextInput, String.valueOf(vInputNumber));
-        solo.clickOnButton("Convert");
         assertTrue(solo.searchText(vResult));
         TextView result = (TextView) solo.getView(R.id.twelfthValue);
         assertEquals(vResult2, result.getText().toString());
@@ -121,56 +117,48 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         solo.pressSpinnerItem(0, 2);
         solo.pressSpinnerItem(1, 1);
         solo.enterText(vEditTextInput, vInputNumber);
-        solo.clickOnButton("Convert");
         assertFalse(solo.searchText(error));
         assertFalse(solo.searchText(error2));
         assertTrue(solo.searchText(error3));
 
         solo.clearEditText(vEditTextInput);
         solo.enterText(vEditTextInput, vInputNumber2);
-        solo.clickOnButton("Convert");
         assertFalse(solo.searchText(error));
         assertFalse(solo.searchText(error2));
         assertTrue(solo.searchText(error3));
 
         solo.clearEditText(vEditTextInput);
         solo.enterText(vEditTextInput, vInputNumber3);
-        solo.clickOnButton("Convert");
         assertTrue(solo.searchText(error));
         assertFalse(solo.searchText(error2));
         assertFalse(solo.searchText(error3));
 
         solo.clearEditText(vEditTextInput);
         solo.enterText(vEditTextInput, vInputNumber4);
-        solo.clickOnButton("Convert");
         assertFalse(solo.searchText(error));
         assertTrue(solo.searchText(error2));
         assertFalse(solo.searchText(error3));
 
         solo.clearEditText(vEditTextInput);
         solo.enterText(vEditTextInput, vInputNumber5);
-        solo.clickOnButton("Convert");
         assertFalse(solo.searchText(error));
         assertTrue(solo.searchText(error2));
         assertFalse(solo.searchText(error3));
 
         solo.clearEditText(vEditTextInput);
         solo.enterText(vEditTextInput, vInputNumber6);
-        solo.clickOnButton("Convert");
         assertTrue(solo.searchText(error));
         assertFalse(solo.searchText(error2));
         assertFalse(solo.searchText(error3));
 
         solo.clearEditText(vEditTextInput);
         solo.enterText(vEditTextInput, vInputNumber7);
-        solo.clickOnButton("Convert");
         assertTrue(solo.searchText(error));
         assertFalse(solo.searchText(error2));
         assertFalse(solo.searchText(error3));
 
         solo.clearEditText(vEditTextInput);
         solo.enterText(vEditTextInput, String.valueOf(vInputNumber8));
-        solo.clickOnButton("Convert");
         assertTrue(solo.searchText(vResult));
     }
 
@@ -183,7 +171,6 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         solo.pressSpinnerItem(0, 0);
         solo.pressSpinnerItem(1, 3);
         solo.enterText(vEditTextInput, "");
-        solo.clickOnButton("Convert");
         TextView result = (TextView) solo.getView(R.id.firstValue);
         TextView result2 = (TextView) solo.getView(R.id.fifthValue);
         TextView result3 = (TextView) solo.getView(R.id.seventhValue);
