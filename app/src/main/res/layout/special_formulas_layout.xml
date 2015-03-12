@@ -250,7 +250,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/sfError"
         android:text="Please enter numbers in both boxes."
-        android:layout_below="@id/sfConvert"
+        android:layout_below="@+id/sfConvert"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
         android:gravity="center"
@@ -263,7 +263,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/sfError2"
         android:text="Please enter an acceptable number."
-        android:layout_below="@id/sfConvert2"
+        android:layout_below="@+id/aocDescription"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
         android:gravity="center"
@@ -276,11 +276,33 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/sfError3"
         android:text="Please enter an acceptable number."
-        android:layout_below="@id/sfConvert3"
+        android:layout_below="@+id/circDescription"
         android:layout_centerHorizontal="true"
         android:textStyle="bold"
         android:gravity="center"
         android:textColor="#ff0000"
         android:visibility="invisible"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/aocDescription"
+        android:text="π * radius * radius"
+        android:layout_below="@+id/sfConvert2"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/circDescription"
+        android:text="2 * π * radius"
+        android:layout_below="@+id/sfConvert3"
+        android:layout_centerHorizontal="true"
+        android:textStyle="bold"
+        android:gravity="center"/>
 
 </RelativeLayout>
