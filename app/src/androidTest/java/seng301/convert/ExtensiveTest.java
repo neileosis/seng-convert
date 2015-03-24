@@ -50,7 +50,6 @@ public class ExtensiveTest extends ActivityInstrumentationTestCase2 {
         solo.clickOnActionBarHomeButton();
         solo.clickInList(1);
 
-        solo.setActivityOrientation(Solo.LANDSCAPE);
         solo.pressSpinnerItem(0, 4);
         solo.pressSpinnerItem(1, 4);
         EditText vEditTextInput = (EditText) solo.getView(R.id.inputText);
@@ -64,7 +63,6 @@ public class ExtensiveTest extends ActivityInstrumentationTestCase2 {
         int randomButton2 = randomWithRange(0,5);
         solo.clickOnButton(randomButton2);
         buttonTest(randomButton2);
-        solo.setActivityOrientation(Solo.PORTRAIT);
 
         solo.clickOnActionBarHomeButton();
         solo.clickInList(2);
