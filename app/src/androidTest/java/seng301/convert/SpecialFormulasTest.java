@@ -23,6 +23,7 @@ public class SpecialFormulasTest extends ActivityInstrumentationTestCase2 {
         solo.finishOpenedActivities();
     }
 
+    //test area formula with two random inputs
     public void testRandomNumberFormula1() throws Exception{
         solo.unlockScreen();
         solo.clickOnActionBarHomeButton();
@@ -40,6 +41,7 @@ public class SpecialFormulasTest extends ActivityInstrumentationTestCase2 {
         assertTrue(solo.waitForText(vResult));
     }
 
+    //test area of circle formula with random input
     public void testRandomNumberFormula2() throws Exception{
         solo.unlockScreen();
         solo.clickOnActionBarHomeButton();
@@ -52,6 +54,7 @@ public class SpecialFormulasTest extends ActivityInstrumentationTestCase2 {
         assertTrue(solo.waitForText(vResult));
     }
 
+    //test circumference of circle formula with random input
     public void testRandomNumberFormula3() throws Exception{
         solo.unlockScreen();
         solo.clickOnActionBarHomeButton();
@@ -64,11 +67,13 @@ public class SpecialFormulasTest extends ActivityInstrumentationTestCase2 {
         assertTrue(solo.waitForText(vResult));
     }
 
+    //round decimals to desired format
     public double roundDecimals(double d) {
         DecimalFormat twoDForm = new DecimalFormat("#.######E0");
         return Double.valueOf(twoDForm.format(d));
     }
 
+    //return random integer within range
     int randomWithRange(int min, int max)
     {
         int range = Math.abs(max - min) + 1;

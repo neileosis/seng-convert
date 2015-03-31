@@ -25,6 +25,7 @@ public class SpecialFormulas extends Fragment{
         return rootview;
     }
 
+    //initialize the buttons and listeners associated with them
     public void onStart() {
         super.onStart();
         Button areaButton = (Button) getView().findViewById(R.id.sfConvert);
@@ -41,6 +42,7 @@ public class SpecialFormulas extends Fragment{
             public void onClick(View v) {circCalc();}});
     }
 
+    //calculate the area of two numbers
     public void areaCalc(){
         final TextView areaTotal = (TextView) getView().findViewById(R.id.areaTotal);
         final EditText areaInput = (EditText) getView().findViewById(R.id.lengthIn);
@@ -57,6 +59,7 @@ public class SpecialFormulas extends Fragment{
         }
     }
 
+    //calculate the area of a circle
     public void aocCalc(){
         final TextView aocTotal = (TextView) getView().findViewById(R.id.aocTotal);
         final EditText aocInput = (EditText) getView().findViewById(R.id.radiusIn);
@@ -65,6 +68,7 @@ public class SpecialFormulas extends Fragment{
             aocTotal.setText(sfConvert(input,input,1));
     }
 
+    //calcualte the circumference of a circle
     public void circCalc(){
         final TextView circTotal = (TextView) getView().findViewById(R.id.circTotal);
         final EditText circInput = (EditText) getView().findViewById(R.id.radiusIn2);

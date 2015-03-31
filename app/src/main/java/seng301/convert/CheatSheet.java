@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 /**
  * Created by neileosis on 15-02-09.
+ * This creates the page to display the cheat sheet text and does not do anything other than display text
  */
 public class CheatSheet extends Fragment{
     View rootview;

@@ -24,6 +24,7 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         solo.finishOpenedActivities();
     }
 
+    //test by inputting a positive number
     public void testRandomPositiveNumber() throws Exception{
         solo.unlockScreen();
         int vInputNumber = randomWithRange(0,999999);
@@ -42,6 +43,7 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         assertEquals(vResult2, result.getText().toString());
     }
 
+    //test by inputting a negative number
     public void testRandomNegativeNumber() throws Exception{
         solo.unlockScreen();
         int vInputNumber = randomWithRange(0,-999999);
@@ -60,6 +62,7 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         assertEquals(vResult2, result.getText().toString());
     }
 
+    //test by inputting a very large number
     public void testLargeNumber() throws Exception{
         solo.unlockScreen();
         double vInputNumber = 1922337203.6854775807e10;
@@ -78,6 +81,7 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         assertEquals(vResult2, result.getText().toString());
     }
 
+    //test by inputting a very small number
     public void testSmallNumber() throws Exception{
         solo.unlockScreen();
         double vInputNumber = -1922337203.6854775807e10;
@@ -96,6 +100,7 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         assertEquals(vResult2, result.getText().toString());
     }
 
+    //test by inputting a improper digits
     public void testImproperDigits() throws Exception{
         solo.unlockScreen();
         String vInputNumber = ".";
@@ -162,6 +167,7 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         assertTrue(solo.searchText(vResult));
     }
 
+    //test by inputting an empty string
     public void testInputEmpty() throws Exception{
         solo.unlockScreen();
         String vResult = "";
@@ -179,11 +185,13 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
         assertEquals(vResult, result3.getText().toString());
     }
 
+    //round to desired decimal places
     public double roundDecimals(double d) {
         DecimalFormat twoDForm = new DecimalFormat("#.##########E0");
         return Double.valueOf(twoDForm.format(d));
     }
 
+    //calculate random integer
     int randomWithRange(int min, int max)
     {
         int range = Math.abs(max - min) + 1;

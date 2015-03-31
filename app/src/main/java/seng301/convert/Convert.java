@@ -33,6 +33,9 @@ public class Convert extends Fragment {
         return rootview;
     }
 
+    /*
+     *Initializing the buttons and conversion categories
+     */
     public void onStart() {
         super.onStart();
         final TextView input = (TextView) rootview.findViewById(R.id.inputText);
@@ -79,6 +82,9 @@ public class Convert extends Fragment {
         chooseVol();
     }
 
+    /*
+     *Initializing the default spinner
+     */
     public void chooseCategory() {
 
         firstSpinner = (Spinner) rootview.findViewById(R.id.unitSpinner2);
@@ -88,6 +94,11 @@ public class Convert extends Fragment {
         firstSpinner.setOnItemSelectedListener(new planOnClickListener());
     }
 
+
+    /*
+     * Method for when user wants to convert area.
+     * There are many hardcoded numbers because it is a unit converter and we must multiply by a specific number to get the desired result.
+     */
     private void chooseArea() {
         areaSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> areaList = new ArrayList<>();
@@ -102,30 +113,34 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, areaList);
         areaAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         areaSpn.setAdapter(areaAdapter);
-        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
-        final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
-        final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
-        final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
-        final TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);
-        final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);
-        final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);
-        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);      //defining all the textviews that will have to be changed
+        final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);      //defining all the textviews that will have to be changed
+        final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);      //defining all the textviews that will have to be changed
+        final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);      //defining all the textviews that will have to be changed
+        final TextView fifthValue = (TextView) rootview.findViewById(R.id.fifthValue);      //defining all the textviews that will have to be changed
+        final TextView sixthValue = (TextView) rootview.findViewById(R.id.sixthValue);      //defining all the textviews that will have to be changed
+        final TextView seventhValue = (TextView) rootview.findViewById(R.id.seventhValue);      //defining all the textviews that will have to be changed
+        final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);      //defining the edittext that will have to be changed
         inputValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                //must be here for the live update to work
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                //must be here for the live update to work
             }
 
+
+            /*
+             * Convert the number as the text in the box is changed
+             */
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = areaSpn.getSelectedItem().toString();
                 switch (selection) {
-                    case "Square Inches": {
+                    case "Square Inches": {                                             //change value of textview to new calulated number
                         firstValue.setText(convertNumber(1));
                         secondValue.setText(convertNumber(0.006944444444444444));
                         thirdValue.setText(convertNumber(0.00064516));
@@ -200,6 +215,10 @@ public class Convert extends Fragment {
         });
     }
 
+    /*
+     * Method for when user wants to convert to binary, decimal, or hex.
+     * There are many hardcoded numbers because it is a unit converter and we must multiply by a specific number to get the desired result.
+     */
     private void chooseBin() {
         binSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> binList = new ArrayList<>();
@@ -220,11 +239,13 @@ public class Convert extends Fragment {
         inputValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //must be here for the live update to work
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                //must be here for the live update to work
 
             }
 
@@ -242,11 +263,13 @@ public class Convert extends Fragment {
         inputValue2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //must be here for the live update to work
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                //must be here for the live update to work
 
             }
 
@@ -263,11 +286,13 @@ public class Convert extends Fragment {
         inputValue3.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //must be here for the live update to work
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                //must be here for the live update to work
 
             }
 
@@ -284,6 +309,10 @@ public class Convert extends Fragment {
 
     }
 
+    /*
+     * Method for when user wants to convert distance.
+     * There are many hardcoded numbers because it is a unit converter and we must multiply by a specific number to get the desired result.
+     */
     private void chooseDist() {
         distSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> distList = new ArrayList<>();
@@ -299,7 +328,7 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, distList);
         distAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         distSpn.setAdapter(distAdapter);
-        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);      //defining all the textviews that will have to be changed
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
         final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
@@ -311,19 +340,24 @@ public class Convert extends Fragment {
         inputValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //must be here for the live update to work
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                //must be here for the live update to work
 
             }
 
+            /*
+             * Convert the number as the text in the box is changed
+             */
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = distSpn.getSelectedItem().toString();
                 switch (selection) {
-                    case "Millimeters": {
+                    case "Millimeters": {                                             //change value of textview to new calulated number
                         firstValue.setText(convertNumber(1));
                         secondValue.setText(convertNumber(0.01));
                         thirdValue.setText(convertNumber(0.001));
@@ -417,6 +451,10 @@ public class Convert extends Fragment {
 
     }
 
+    /*
+     * Method for when user wants to convert information.
+     * There are many hardcoded numbers because it is a unit converter and we must multiply by a specific number to get the desired result.
+     */
     private void chooseInfo() {
         infoSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> infoList = new ArrayList<>();
@@ -431,7 +469,7 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, infoList);
         infoAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         infoSpn.setAdapter(infoAdapter);
-        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);      //defining all the textviews that will have to be changed
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
         final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
@@ -442,19 +480,24 @@ public class Convert extends Fragment {
         inputValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //must be here for the live update to work
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                //must be here for the live update to work
 
             }
 
+            /*
+             * Convert the number as the text in the box is changed
+             */
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = distSpn.getSelectedItem().toString();
                 switch (selection) {
-                    case "Bit": {
+                    case "Bit": {                                             //change value of textview to new calulated number
                         firstValue.setText(convertNumber(1));
                         secondValue.setText(convertNumber(0.125));
                         thirdValue.setText(convertNumber(0.0001220703125));
@@ -530,6 +573,10 @@ public class Convert extends Fragment {
 
     }
 
+    /*
+     * Method for when user wants to convert speed.
+     * There are many hardcoded numbers because it is a unit converter and we must multiply by a specific number to get the desired result.
+     */
     private void chooseSpd() {
         spdSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> speedList = new ArrayList<>();
@@ -544,7 +591,7 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, speedList);
         speedAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spdSpn.setAdapter(speedAdapter);
-        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);      //defining all the textviews that will have to be changed
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
         final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
@@ -555,19 +602,24 @@ public class Convert extends Fragment {
         inputValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //must be here for the live update to work
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                //must be here for the live update to work
 
             }
 
+            /*
+             * Convert the number as the text in the box is changed
+             */
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = areaSpn.getSelectedItem().toString();
                 switch (selection) {
-                    case "Meters per second": {
+                    case "Meters per second": {                                             //change value of textview to new calulated number
                         firstValue.setText(convertNumber(1));
                         secondValue.setText(convertNumber(0.001));
                         thirdValue.setText(convertNumber(3.28084));
@@ -642,6 +694,10 @@ public class Convert extends Fragment {
         });
     }
 
+    /*
+     * Method for when user wants to convert temperature.
+     * There are many hardcoded numbers because it is a unit converter and we must multiply by a specific number to get the desired result.
+     */
     private void chooseTemp() {
         tempSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> tempList = new ArrayList<>();
@@ -652,26 +708,31 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, tempList);
         tempAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         tempSpn.setAdapter(tempAdapter);
-        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);      //defining all the textviews that will have to be changed
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
         final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
         inputValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //must be here for the live update to work
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                //must be here for the live update to work
 
             }
 
+            /*
+             * Convert the number as the text in the box is changed
+             */
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = tempSpn.getSelectedItem().toString();
                 switch (selection) {
-                    case "Fahrenheit": {
+                    case "Fahrenheit": {                                             //change value of textview to new calulated number
                         firstValue.setText(tempConvert(0));
                         secondValue.setText(tempConvert(1));
                         thirdValue.setText(tempConvert(4));
@@ -695,6 +756,10 @@ public class Convert extends Fragment {
 
     }
 
+    /*
+     * Method for when user wants to convert time.
+     * There are many hardcoded numbers because it is a unit converter and we must multiply by a specific number to get the desired result.
+     */
     private void chooseTime() {
         timeSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> timeList = new ArrayList<>();
@@ -710,7 +775,7 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, timeList);
         timeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         timeSpn.setAdapter(timeAdapter);
-        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);      //defining all the textviews that will have to be changed
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
         final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
@@ -722,19 +787,24 @@ public class Convert extends Fragment {
         inputValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //must be here for the live update to work
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                //must be here for the live update to work
 
             }
 
+            /*
+             * Convert the number as the text in the box is changed
+             */
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = timeSpn.getSelectedItem().toString();
                 switch (selection) {
-                    case "Seconds": {
+                    case "Seconds": {                                             //change value of textview to new calulated number
                         firstValue.setText(convertNumber(1));
                         secondValue.setText(convertNumber(0.0166667));
                         thirdValue.setText(convertNumber(0.000277778));
@@ -827,6 +897,10 @@ public class Convert extends Fragment {
         });
     }
 
+    /*
+     * Method for when user wants to convert weight.
+     * There are many hardcoded numbers because it is a unit converter and we must multiply by a specific number to get the desired result.
+     */
     private void chooseWgt() {
         wgtSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> wgtList = new ArrayList<>();
@@ -842,7 +916,7 @@ public class Convert extends Fragment {
                 android.R.layout.simple_spinner_item, wgtList);
         wgtAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         wgtSpn.setAdapter(wgtAdapter);
-        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
+        final TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);      //defining all the textviews that will have to be changed
         final TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
         final TextView thirdValue = (TextView) rootview.findViewById(R.id.thirdValue);
         final TextView fourthValue = (TextView) rootview.findViewById(R.id.fourthValue);
@@ -854,19 +928,22 @@ public class Convert extends Fragment {
         inputValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                //must be here for the live update to work
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                //must be here for the live update to work
             }
 
+            /*
+             * Convert the number as the text in the box is changed
+             */
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = wgtSpn.getSelectedItem().toString();
                 switch (selection) {
-                    case "Milligram": {
+                    case "Milligram": {                                             //change value of textview to new calulated number
                         firstValue.setText(convertNumber(1));
                         secondValue.setText(convertNumber(0.005));
                         thirdValue.setText(convertNumber(0.001));
@@ -959,6 +1036,10 @@ public class Convert extends Fragment {
         });
     }
 
+    /*
+     * Method for when user wants to convert volume.
+     * There are many hardcoded numbers because it is a unit converter and we must multiply by a specific number to get the desired result.
+     */
     private void chooseVol() {
         volSpn = (Spinner) rootview.findViewById(R.id.unitSpinner);
         List<String> volList = new ArrayList<>();
@@ -994,19 +1075,24 @@ public class Convert extends Fragment {
         inputValue.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                //must be here for the live update to work
 
             }
 
             @Override
             public void afterTextChanged(Editable s) {
+                //must be here for the live update to work
 
             }
 
+            /*
+             * Convert the number as the text in the box is changed
+             */
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String selection = volSpn.getSelectedItem().toString();
                 switch (selection) {
-                    case "Milliliter": {
+                    case "Milliliter": {                                             //change value of textview to new calulated number
                         firstValue.setText(convertNumber(1));
                         secondValue.setText(convertNumber(0.2));
                         thirdValue.setText(convertNumber(0.066666666667));
@@ -1195,6 +1281,9 @@ public class Convert extends Fragment {
 
     public class planOnClickListener implements AdapterView.OnItemSelectedListener {
 
+        /*
+         * Generate items for second spinner based on input of first spinner
+         */
         @Override
         public void onItemSelected(AdapterView<?> parent, View v, int pos,
                                    long id) {
@@ -1324,6 +1413,9 @@ public class Convert extends Fragment {
     }
     public class planOnClickListener2 implements AdapterView.OnItemSelectedListener {
 
+        /*
+         * Change the inputs allowed to be entered for each different conversion type
+         */
         @Override
         public void onItemSelected(AdapterView<?> parent, View v, int pos,
                                    long id) {
@@ -1363,21 +1455,7 @@ public class Convert extends Fragment {
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
+    //clearing all boxes for the conversion
     public void resetBoxes(){
         final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
         final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
@@ -1392,6 +1470,8 @@ public class Convert extends Fragment {
         inputValue3.setText("");
         inputValue4.setText("");
     }
+
+    //clearing all boxes for the binary conversion
     public void resetBinBoxes(){
         final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
         final EditText inputValue2 = (EditText) rootview.findViewById(R.id.inputTextHex);
@@ -1407,11 +1487,13 @@ public class Convert extends Fragment {
         inputValue4.setText("");
     }
 
+    //round decimal points to set what is displayed
     public double roundDecimals(double d) {
         DecimalFormat twoDForm = new DecimalFormat("#.##########E0");
         return Double.valueOf(twoDForm.format(d));
     }
 
+    //convert number and check if the input is empty
     public String convertNumber(double var) {
         final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
         String input = inputValue.getText().toString();
@@ -1427,6 +1509,7 @@ public class Convert extends Fragment {
         }
     }
 
+    //convert temperature
     public String tempConvert (int version) {
         final EditText inputValue = (EditText) rootview.findViewById(R.id.inputText);
         String input = inputValue.getText().toString();
@@ -1465,6 +1548,11 @@ public class Convert extends Fragment {
         }
     }
 
+    /* checking to see that the input fits the proper format
+     * only one "-" and its at the beginning of the number
+     * only one decimal
+     * there is a number in the input at all
+     */
     public boolean errorCheck(String input){
         final TextView error = (TextView) rootview.findViewById(R.id.error);
         decCount = countOccurrences(input,'.');
@@ -1490,6 +1578,7 @@ public class Convert extends Fragment {
         }
     }
 
+    //count helping to determine errors in input
     public int countOccurrences(String input, char find)
     {
         int count = 0;
@@ -1503,6 +1592,7 @@ public class Convert extends Fragment {
         return count;
     }
 
+    //hiding the quick convert buttons when it is switched to the binary converter
     public void quickVis(){
         Button quickSet1 = (Button) rootview.findViewById(R.id.quickSet1);
         Button quickSet2 = (Button) rootview.findViewById(R.id.quickSet2);
@@ -1515,6 +1605,8 @@ public class Convert extends Fragment {
         quickSet4.setVisibility(View.INVISIBLE);
         quickSet5.setVisibility(View.INVISIBLE);
     }
+
+    //displaying the quick convert buttons when it is switched from the binary converter
     public void quickVis2(){
         Button quickSet1 = (Button) rootview.findViewById(R.id.quickSet1);
         Button quickSet2 = (Button) rootview.findViewById(R.id.quickSet2);
@@ -1528,6 +1620,7 @@ public class Convert extends Fragment {
         quickSet5.setVisibility(View.VISIBLE);
     }
 
+    //clearing out all the values set
     private void zeroValues() {
         TextView firstValue = (TextView) rootview.findViewById(R.id.firstValue);
         TextView secondValue = (TextView) rootview.findViewById(R.id.secondValue);
@@ -1554,6 +1647,8 @@ public class Convert extends Fragment {
         eleventhValue.setText("");
         twelfthValue.setText("");
     }
+
+    //clearing out all the names set
     private void zeroNames() {
         TextView firstName = (TextView) rootview.findViewById(R.id.firstName);
         TextView secondName = (TextView) rootview.findViewById(R.id.secondName);

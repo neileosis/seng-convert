@@ -29,7 +29,7 @@ public class Options extends Fragment {
 
     public void onStart() {
         super.onStart();
-        Button firstButton = (Button) getView().findViewById(R.id.button);
+        Button firstButton = (Button) getView().findViewById(R.id.button);          //defining the buttons
         Button secondButton = (Button) getView().findViewById(R.id.button2);
         Button thirdButton = (Button) getView().findViewById(R.id.button3);
         Button fourthButton = (Button) getView().findViewById(R.id.button4);
@@ -39,6 +39,8 @@ public class Options extends Fragment {
         final EditText customColor = (EditText) getView().findViewById(R.id.customValue);
         final TextView note = (TextView) getView().findViewById(R.id.note);
         note.setVisibility(View.INVISIBLE);
+
+        //setting listeners so that each button click changes the background color and displays a message
         firstButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {Conversion.bgColor = getString(R.string.def);note.setVisibility(View.VISIBLE);Toast.makeText(getActivity(), getString(R.string.button1), Toast.LENGTH_LONG).show();}});
@@ -57,6 +59,7 @@ public class Options extends Fragment {
         sixthButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {Conversion.bgColor = getString(R.string.white);note.setVisibility(View.VISIBLE);Toast.makeText(getActivity(), getString(R.string.button6), Toast.LENGTH_LONG).show();}});
+        //button that sets a user given color to the background color
         customButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

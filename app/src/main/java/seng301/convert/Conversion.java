@@ -49,6 +49,9 @@ public class Conversion extends ActionBarActivity
                 (DrawerLayout) findViewById(R.id.drawer_layout));
     }
 
+    /**
+     * Determining what to call when specific menu item selected
+     */
     @Override
     public void onNavigationDrawerItemSelected(int position) {
 
@@ -74,6 +77,9 @@ public class Conversion extends ActionBarActivity
                 .commit();
     }
 
+    /**
+     * Linking the names for the items in the navigation drawer
+     */
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:

@@ -25,6 +25,7 @@ public class OptionsTest extends ActivityInstrumentationTestCase2 {
         solo.finishOpenedActivities();
     }
 
+    //test changing a color
     public void testSingleColorChange() throws Exception{
         solo.unlockScreen();
         solo.clickOnActionBarHomeButton();
@@ -34,6 +35,7 @@ public class OptionsTest extends ActivityInstrumentationTestCase2 {
         buttonTest(randomButton);
     }
 
+    //test changing three colors at once
     public void testThreeColorChange() throws Exception{
         solo.unlockScreen();
         solo.clickOnActionBarHomeButton();
@@ -56,6 +58,7 @@ public class OptionsTest extends ActivityInstrumentationTestCase2 {
         solo.clickInList(1);
     }
 
+    //help testing changing a color
     void buttonTest(int button){
         switch (button){
             case 0:
@@ -86,6 +89,7 @@ public class OptionsTest extends ActivityInstrumentationTestCase2 {
 
     }
 
+    //return random integer within desired range
     int randomWithRange(int min, int max)
     {
         int range = Math.abs(max - min) + 1;
