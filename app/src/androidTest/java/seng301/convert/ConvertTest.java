@@ -28,19 +28,16 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
     public void testRandomPositiveNumber() throws Exception{
         solo.unlockScreen();
         int vInputNumber = randomWithRange(0,999999);
-        int vMulNumber = 86400;
-        int vMulNumber2 = 1440;
+        int vMulNumber = 1440;
         String vResult = Double.toString(roundDecimals(vInputNumber*vMulNumber));
-        String vResult2 = Double.toString(roundDecimals(vInputNumber*vMulNumber2));
 
         EditText vEditTextInput = (EditText) solo.getView(R.id.inputText);
 
         solo.pressSpinnerItem(0, 6);
         solo.pressSpinnerItem(1, 3);
         solo.enterText(vEditTextInput, String.valueOf(vInputNumber));
-        assertTrue(solo.searchText(vResult));
         TextView result = (TextView) solo.getView(R.id.secondValue);
-        assertEquals(vResult2, result.getText().toString());
+        assertEquals(vResult, result.getText().toString());
     }
 
     //test by inputting a negative number
@@ -174,8 +171,8 @@ public class ConvertTest extends ActivityInstrumentationTestCase2 {
 
         EditText vEditTextInput = (EditText) solo.getView(R.id.inputText);
 
-        solo.pressSpinnerItem(0, 0);
-        solo.pressSpinnerItem(1, 3);
+        solo.pressSpinnerItem(0, 5);
+        solo.pressSpinnerItem(1, 2);
         solo.enterText(vEditTextInput, "");
         TextView result = (TextView) solo.getView(R.id.firstValue);
         TextView result2 = (TextView) solo.getView(R.id.fifthValue);
