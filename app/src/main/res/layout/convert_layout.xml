@@ -130,7 +130,7 @@
         android:id="@+id/firstName"
         android:paddingTop="6dp"
         android:layout_alignRight="@+id/dummy"
-        android:layout_below="@+id/inputText" />
+        android:layout_below="@+id/inputText"/>
 
     <TextView
         android:layout_width="wrap_content"

@@ -230,7 +230,7 @@ public class NavigationDrawerFragment extends Fragment {
         // Forward the new configuration the drawer toggle component.
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
-
+/*
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         // If the drawer is open, show the global app actions in the action bar. See also
@@ -241,7 +241,7 @@ public class NavigationDrawerFragment extends Fragment {
         }
         super.onCreateOptionsMenu(menu, inflater);
     }
-
+*/
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Fragment objFragment = null;

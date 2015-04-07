@@ -104,7 +104,7 @@ public class Conversion extends ActionBarActivity
         actionBar.setTitle(mTitle);
     }
 
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
@@ -132,7 +132,7 @@ public class Conversion extends ActionBarActivity
 
         return super.onOptionsItemSelected(item);
     }
-
+*/
     /**
      * A placeholder fragment containing a simple view.
      */
