@@ -1,4 +1,7 @@
 # seng-convert
+
+This is a project created for SENG 301 at the University of Calgary in 2015.
+
 This is an android application and these files should be assembled in Android Studio or similar.
 The source code, test code, and resource files are available here.
 
